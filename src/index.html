@@ -1,11 +1,87 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang="en">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <main class="grid">
+        <div class="themes">
+            <label for="dark-theme"></label>
+            <input type="radio" id="dark-theme" name="theme" aria-label="dark-theme" value="dark-theme" checked>
+            <label for="light-theme"></label>
+            <input type="radio" id="light-theme" name="theme" aria-label="light-theme" value="light-theme">
+            <label for="pink-theme"></label>
+            <input type="radio" id="pink-theme" name="theme" aria-label="pink-theme" value="pink-theme">
+        </div>
+        <div id="numbersDisplay" class="numbers-display">0</div>
+        <div class="buttons">
+            <button aria-label="open parenthesis" value="">(</button>
+            <button aria-label="close parenthesis" value="">)</button>
+            <button aria-label="memory clear" value="">mc</button>
+            <button aria-label="memory add" value="">m+</button>
+            <button aria-label="memory subtract" value="">m-</button>
+            <button aria-label="memory recall" value="">mr</button>
+            <button aria-label="all clear" value="">AC</button>
+            <button aria-label="change sign" value=""><sup>+</sup>&frasl;<sub>−</sub></button>
+            <button aria-label="percent" value="%">%</button>
+
+            <button class="operator-button-color" aria-label="divide" value="/">÷</button>
+
+            <button aria-label="second function" value="">2<sup>nd</sup></button>
+            <button aria-label="x squared" value="">x<sup>2</sup></button>
+            <button aria-label="x cubed" value="">x<sup>3</sup></button>
+            <button aria-label="x to the power of y" value="">x<sup>y</sup></button>
+            <button aria-label="e to the power of x" value="">e<sup>x</sup></button>
+            <button aria-label="10 to the power of x" value="">10<sup>x</sup></button>
+
+            <button class="number-button-color" aria-label="seven" value="7">7</button>
+            <button class="number-button-color" aria-label="eight" value="8">8</button>
+            <button class="number-button-color" aria-label="nine" value="9">9</button>
+
+            <button class="operator-button-color" aria-label="multiply" value="*">x</button>
+
+            <button aria-label="reciprocal" value=""><sup>1</sup>&frasl;<sub>x</sub></button>
+            <button aria-label="square root" value=""><sup>2</sup>√x</button>
+            <button aria-label="cube root" value=""><sup>3</sup>√x</button>
+            <button aria-label="y root of x" value=""><sup>y</sup>√x</button>
+            <button aria-label="natural logarithm" value="">In</button>
+            <button aria-label="log base 10" value="">log<sub>10</sub></button>
+
+            <button class="number-button-color" aria-label="four" value="4">4</button>
+            <button class="number-button-color" aria-label="five" value="5">5</button>
+            <button class="number-button-color" aria-label="six" value="6">6</button>
+
+            <button class="operator-button-color" aria-label="minus" value="-">-</button>
+
+            <button aria-label="factorial" value="">x!</button>
+            <button aria-label="sine" value="">sin</button>
+            <button aria-label="cosine" value="">cos</button>
+            <button aria-label="tangent" value="">tan</button>
+            <button aria-label="Euler's number" value="">e</button>
+            <button aria-label="enter exponent" value="">EE</button>
+
+            <button class="number-button-color" aria-label="one" value="1">1</button>
+            <button class="number-button-color" aria-label="two" value="2">2</button>
+            <button class="number-button-color" aria-label="three" value="3">3</button>
+
+            <button class="operator-button-color" aria-label="plus" value="+">+</button>
+
+            <button aria-label="radian mode" value="">Rad</button>
+            <button aria-label="hyperbolic sine" value="">sinh</button>
+            <button aria-label="hyperbolic cosine" value="">cosh</button>
+            <button aria-label="hyperbolic tangent" value="">tanh</button>
+            <button aria-label="pi" value="">π</button>
+            <button aria-label="random number" value="">Rand</button>
+            <button class="number-button-color long-button" aria-label="zero" value="0">0</button>
+            <button class="number-button-color" aria-label="decimal comma" value=",">,</button>
+            <button class="operator-button-color" aria-label="equals" value="=">=</button>
+        </div>
+        
+    </main>
 </body>
+
 </html>
