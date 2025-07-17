@@ -1,24 +1,5 @@
 import { captureNumber } from '../numbers/numbers';
 
-// const displayState = {
-//     shouldCleanDisplay: true,
-// };
-
-// const manageDisplay = (value) => {
-//     let display = document.querySelector('#numbersDisplay');
-
-//     if(displayState.shouldCleanDisplay || display.innerHTML == '0') {
-//         display.innerHTML = '';
-//         display.innerHTML = value;
-//         displayState.shouldCleanDisplay = false;
-//     } else {
-//         display.innerHTML += value;
-//         let num = captureNumber();
-//         console.log(num);
-
-//     }
-// };
-
 export const clearDisplay = () => {
   let display = document.querySelector('#numbersDisplay');
   display.innerHTML = '';
