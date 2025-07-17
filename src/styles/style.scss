@@ -84,6 +84,12 @@ body {
             outline: 2px solid black;
             border: solid rgb(255, 255, 255);
         }
+
+        &:disabled {
+            background-color: color.scale(variables.$dark-theme-medium-grey-color, $lightness: -20%);
+            color: color.scale(variables.$dark-theme-text-color, $lightness: -20%);
+            border-color: variables.$dark-theme-light-grey-color;
+        }
        
     }
     
