@@ -1,144 +1,153 @@
-@use "./variables";
-@use "sass:color";
+@use './variables';
+@use 'sass:color';
 
 body {
-    margin: 0;
-    
+  margin: 0;
 }
 
 .grid {
-    display: grid;
+  display: grid;
 
-    width: 395px;
-    height: auto;
+  width: 395px;
+  height: auto;
 
-    margin: 50px auto;
+  margin: 50px auto;
 
-    grid-template-columns: 395px;
-    grid-template-rows: 1fr 2fr 6fr;
-    grid-template-areas: 
-    "themes"
-    "display"
-    "buttons";
+  grid-template-columns: 395px;
+  grid-template-rows: 1fr 2fr 6fr;
+  grid-template-areas:
+    'themes'
+    'display'
+    'buttons';
 
-    background-color: variables.$dark-theme-dark-grey-color;
-    border-radius: variables.$border-radius;
-    box-shadow: 0px 7px 20px rgb(41, 41, 41);
+  background-color: variables.$dark-theme-dark-grey-color;
+  border-radius: variables.$border-radius;
+  box-shadow: 0px 7px 20px rgb(41, 41, 41);
 }
 
 .themes {
-    grid-area: themes;
+  grid-area: themes;
 
-    align-self: center;
+  align-self: center;
 
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
-.numbers-display{
-    grid-area: display;
+.numbers-display {
+  grid-area: display;
 
-    justify-self: right;
+  justify-self: right;
 
-    margin-right: 7px;
+  margin-right: 7px;
 
-    color: variables.$dark-theme-text-color;
-    font-size: variables.$font-display-size;
-    font-family: variables.$font-family;
+  color: variables.$dark-theme-text-color;
+  font-size: variables.$font-display-size;
+  font-family: variables.$font-family;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    align-content: flex-end;
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    grid-area: buttons;
-    
-    button {
-        width: 38px;
-        height: 35px;
+  grid-area: buttons;
 
-        flex-grow: 1;
+  button {
+    width: 38px;
+    height: 35px;
 
-        border: solid 0.5px variables.$dark-theme-dark-grey-color;
+    flex-grow: 1;
 
-        color: variables.$dark-theme-text-color;
-        background-color: variables.$dark-theme-medium-grey-color;
-        font-size: variables.$font-values-size;
-       
+    border: solid 0.5px variables.$dark-theme-dark-grey-color;
 
-        &:nth-child(41) {
-            border-bottom-left-radius: variables.$border-radius;
-        }
+    color: variables.$dark-theme-text-color;
+    background-color: variables.$dark-theme-medium-grey-color;
+    font-size: variables.$font-values-size;
 
-        &:last-child {
-            border-bottom-right-radius: variables.$border-radius;
-        }
-
-        &:hover {
-            background-color: color.scale(variables.$dark-theme-medium-grey-color, $lightness: -20%);
-        }
-
-        &:focus {
-            outline: 2px solid black;
-            border: solid rgb(255, 255, 255);
-        }
-
-        &:disabled {
-            background-color: color.scale(variables.$dark-theme-medium-grey-color, $lightness: -20%);
-            color: color.scale(variables.$dark-theme-text-color, $lightness: -20%);
-            border-color: variables.$dark-theme-light-grey-color;
-        }
-       
-    }
-    
-    .number-button-color {
-        background-color: variables.$dark-theme-light-grey-color;
-        font-size: variables.$font-numbers-size;
-
-        &:hover {
-            background-color: color.scale(variables.$dark-theme-light-grey-color, $lightness: -20%);
-        }
+    &:nth-child(41) {
+      border-bottom-left-radius: variables.$border-radius;
     }
 
-    .operator-button-color {
-        background-color: variables.$dark-theme-orange-color;
-
-        &:hover {
-            background-color: color.scale(variables.$dark-theme-orange-color, $lightness: -20%);
-        }
+    &:last-child {
+      border-bottom-right-radius: variables.$border-radius;
     }
 
-    .long-button {
-        flex-grow: 26;
+    &:hover {
+      background-color: color.scale(
+        variables.$dark-theme-medium-grey-color,
+        $lightness: -20%
+      );
     }
-}
 
-input[type="radio"] {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    margin: 0;
-    border-radius: 50%;
-    border: 2px solid #999;
-    background-color: #fff;
-    cursor: pointer;
-    position: relative;
-  
-    &:checked {
-      border: 2px solid white;
+    &:focus-visible {
+      outline: 2px solid black;
+      border: solid rgb(255, 255, 255);
+    }
+
+    &:disabled {
+      background-color: color.scale(
+        variables.$dark-theme-medium-grey-color,
+        $lightness: -20%
+      );
+      color: color.scale(variables.$dark-theme-text-color, $lightness: -20%);
+      border-color: variables.$dark-theme-light-grey-color;
     }
   }
 
-input[value="dark-theme"] {
-    background-color: variables.$dark-theme-radio-color;
+  .number-button-color {
+    background-color: variables.$dark-theme-light-grey-color;
+    font-size: variables.$font-numbers-size;
+
+    &:hover {
+      background-color: color.scale(
+        variables.$dark-theme-light-grey-color,
+        $lightness: -20%
+      );
+    }
+  }
+
+  .operator-button-color {
+    background-color: variables.$dark-theme-orange-color;
+
+    &:hover {
+      background-color: color.scale(
+        variables.$dark-theme-orange-color,
+        $lightness: -20%
+      );
+    }
+  }
+
+  .long-button {
+    flex-grow: 26;
+  }
 }
 
-input[value="light-theme"] {
-    background-color: variables.$light-theme-radio-color;
+input[type='radio'] {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+
+  &:checked {
+    border: 2px solid white;
+  }
 }
 
-input[value="pink-theme"] {
-    background-color: variables.$pink-theme-radio-color;
+input[value='dark-theme'] {
+  background-color: variables.$dark-theme-radio-color;
+}
+
+input[value='light-theme'] {
+  background-color: variables.$light-theme-radio-color;
+}
+
+input[value='pink-theme'] {
+  background-color: variables.$pink-theme-radio-color;
 }
