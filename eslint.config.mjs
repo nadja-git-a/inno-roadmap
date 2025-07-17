@@ -13,14 +13,9 @@ export default defineConfig([
       js,
       prettier: prettierPlugin,
     },
-    extends: [
-      'js/recommended',
-      'plugin:prettier/recommended', 
-    ],
+    extends: ['js/recommended', 'plugin:prettier/recommended'],
     rules: {
-      'prettier/prettier': 'error', 
+      'prettier/prettier': 'error',
     },
   },
 ]);
-
-
