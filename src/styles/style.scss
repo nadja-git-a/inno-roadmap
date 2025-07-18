@@ -14,10 +14,11 @@ body {
   margin: 50px auto;
 
   grid-template-columns: 395px;
-  grid-template-rows: 1fr 2fr 6fr;
+  grid-template-rows: 1fr 1fr 2fr 6fr;
   grid-template-areas:
     'themes'
-    'display'
+    'calculations-display'
+    'numbers-display'
     'buttons';
 
   background-color: variables.$dark-theme-dark-grey-color;
@@ -33,16 +34,25 @@ body {
   margin-left: 10px;
 }
 
+.calculations-display {
+  grid-area: calculations-display;
+
+  color: color.scale(variables.$dark-theme-text-color, $lightness: -10%);
+
+}
+
 .numbers-display {
-  grid-area: display;
-
-  justify-self: right;
-
-  margin-right: 7px;
+  grid-area: numbers-display;
 
   color: variables.$dark-theme-text-color;
   font-size: variables.$font-display-size;
   font-family: variables.$font-family;
+}
+
+.display-positioning {
+  justify-self: right;
+
+  margin-right: 7px;
 }
 
 .buttons {
