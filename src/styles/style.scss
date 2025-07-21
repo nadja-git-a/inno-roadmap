@@ -38,7 +38,8 @@ body {
   grid-area: calculations-display;
 
   color: color.scale(variables.$dark-theme-text-color, $lightness: -10%);
-
+  
+  font-family: variables.$font-family;
 }
 
 .numbers-display {

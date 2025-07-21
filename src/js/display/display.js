@@ -1,32 +1,51 @@
-import { captureNumber } from '../numbers/numbers';
 
-export const clearDisplay = () => {
-  let display = document.querySelector('#numbersDisplay');
-  display.innerHTML = '';
+import {operationState} from '../operators/operands.js'
+
+let numbersDisplay = document.querySelector('#numbersDisplay');
+let calculationsDisplay = document.querySelector('#calculationsDisplay');
+
+export const clearNumbersDisplay = () => {
+  numbersDisplay.innerHTML = '';
 };
 
-export const updateDisplay = value => {
-  let display = document.querySelector('#numbersDisplay');
+export const clearCalculationsDisplay = () => {
+    calculationsDisplay.innerHTML = '';
+};
 
-  if (display.innerHTML == '0') {
-    display.innerHTML = '';
-    display.innerHTML += value;
+export const updateDisplay = (value, targetDisplay) => {
+    
+  if (targetDisplay.innerHTML == '0') {
+    if(value == '.') {
+      targetDisplay.innerHTML += value;
+    } else {
+      targetDisplay.innerHTML = '';
+      targetDisplay.innerHTML += value;
+    }
   } else {
-    display.innerHTML += value;
+    targetDisplay.innerHTML += value;
   }
+
 };
 
 export const showcaseValueOnDisplay = e => {
-  e.preventDefault();
+   e.preventDefault();
 
-  let value = e.target.value;
-  if (!isNaN(value)) {
-    updateDisplay(value);
-  }
+   let value = e.target.value;
+   updateDisplay(value, calculationsDisplay);
 
-  if (value == 'AC') {
-    clearDisplay();
+   if (!isNaN(value) || value == '.' || value == '-') {
+    updateDisplay(value, numbersDisplay);
+   }
+
+   if (value == 'AC') {
+    clearNumbersDisplay();
+    clearCalculationsDisplay();
     value = 0;
-    updateDisplay(value);
-  }
+    operationState.leftOperand = null;
+    operationState.rightOperand = null;
+    operationState.operator = null;
+    updateDisplay(value, numbersDisplay);
+    updateDisplay(value, calculationsDisplay);
+    console.log('all clean');
+   }
 };

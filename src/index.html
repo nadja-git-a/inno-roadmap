@@ -35,7 +35,10 @@
           value="pink-theme"
         />
       </div>
-      <div id="calculationsDisplay" class="calculations-display display-positioning"></div>
+      <div
+        id="calculationsDisplay"
+        class="calculations-display display-positioning"
+      >0</div>
       <div id="numbersDisplay" class="numbers-display display-positioning">0</div>
       <div class="buttons">
         <button aria-label="open parenthesis" disabled>(</button>
@@ -45,8 +48,8 @@
         <button aria-label="memory subtract" value="">m-</button>
         <button aria-label="memory recall" value="">mr</button>
         <button aria-label="all clear" value="AC">AC</button>
-        <button aria-label="change sign" value="">
-          <sup>+</sup>&frasl;<sub>-</sub>
+        <button aria-label="change sign" id="changeSign">
+          +/-
         </button>
         <button aria-label="percent" value="%">%</button>
 
@@ -55,9 +58,9 @@
         </button>
 
         <button aria-label="second function" disabled>2<sup>nd</sup></button>
-        <button aria-label="x squared" value="">x<sup>2</sup></button>
-        <button aria-label="x cubed" value="">x<sup>3</sup></button>
-        <button aria-label="x to the power of y" value="">x<sup>y</sup></button>
+        <button aria-label="x squared" value="squared">x<sup>2</sup></button>
+        <button aria-label="x cubed" value="cubed">x<sup>3</sup></button>
+        <button aria-label="x to the power of y" value="powerOfY">x<sup>y</sup></button>
         <button aria-label="e to the power of x" disabled>e<sup>x</sup></button>
         <button aria-label="10 to the power of x" value="">
           10<sup>x</sup>
@@ -80,9 +83,9 @@
         <button aria-label="reciprocal" disabled>
           <sup>1</sup>&frasl;<sub>x</sub>
         </button>
-        <button aria-label="square root" value=""><sup>2</sup>√x</button>
-        <button aria-label="cube root" value=""><sup>3</sup>√x</button>
-        <button aria-label="y root of x" value=""><sup>y</sup>√x</button>
+        <button aria-label="square root" class="roots" value="squareRoot"><sup>2</sup>√x</button>
+        <button aria-label="cube root" class="roots" value="cubeRoot"><sup>3</sup>√x</button>
+        <button aria-label="y root of x" class="roots" value="yRoot"><sup>y</sup>√x</button>
         <button aria-label="natural logarithm" disabled>In</button>
         <button aria-label="log base 10" disabled>log<sub>10</sub></button>
 
@@ -131,16 +134,12 @@
           class="number-button-color long-button"
           aria-label="zero"
           value="0"
-        >
-          0
-        </button>
+        >0</button>
         <button
           class="number-button-color"
           aria-label="decimal comma"
           value="."
-        >
-          .
-        </button>
+        >.</button>
         <button
           id="equals"
           class="operator-button-color"
