@@ -1,5 +1,6 @@
 import { showcaseValueOnDisplay } from './display/display.js';
-import { pressEquals, defineOperand } from './operators/operands.js';
+import { defineOperand } from './operators/operands.js';
+import {pressEquals} from './operators/equals.js'
 
 import '../styles/style.scss';
 import { pressPercentage } from './operators/percentage.js';

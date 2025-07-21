@@ -5,7 +5,6 @@ export const pressPower = (e) => {
     e.preventDefault();
 
     let num = document.querySelector('#numbersDisplay').innerHTML;
-    let y = 5;
 
     console.log(num)
 
@@ -38,16 +37,11 @@ export const pressPower = (e) => {
     }
 
     if(e.target.value == 'powerOfY'){
-        num = extractYRoot(num, y);
-        clearNumbersDisplay();
+        operationState.leftOperand = num;
+        num = '';      
         updateDisplay(num, numbersDisplay)
-        if(operationState.leftOperand == null || !operationState.rightOperand){
-            operationState.leftOperand = num;
-            console.log('operationState.leftOperand y: '+ operationState.leftOperand);
-        } else {
-            operationState.rightOperand = num;
-            console.log('operationState.rightOperand y: '+ operationState.rightOperand);
-        }
+        operationState.operator ='^';
+        clearNumbersDisplay();
     }
 
 }
@@ -60,8 +54,15 @@ const extractCube = (num) => {
     return num * num * num;
 }
 
-const extractYRoot = (num, y) => {
-    for (let index = 0; index < y; index++) {
-        num *= num
+export const extractYRoot = (num) => {
+    let y = operationState.rightOperand;
+    let result = 1;
+    console.log('extract root' + num, y);
+    for (let i = 0; i < y; i++) {
+        result *= num;
+        console.log('inside the loop' + num)
     }
+    clearNumbersDisplay();
+    updateDisplay(result, numbersDisplay)
+    return result;
 }

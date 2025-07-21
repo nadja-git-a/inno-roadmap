@@ -6,6 +6,7 @@ import {
 } from './operators-commands.js';
 import { operationState } from './operands.js';
 import { clearNumbersDisplay, showcaseResultOnDisplay, updateDisplay } from '../display/display.js';
+import {extractYRoot} from '../operators/power.js'
 
 // export const defineOperator = (e) => {
 //   e.preventDefault();
@@ -48,6 +49,10 @@ export const makeCalculations = () => {
     operationState.leftOperand = division.execute();
     clearNumbersDisplay();
     return division.execute();
+  }
+  if(operator == '^'){
+    let rootY = extractYRoot(operationState.leftOperand);
+    return rootY;
   }
 };
 

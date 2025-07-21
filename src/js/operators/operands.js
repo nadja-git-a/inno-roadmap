@@ -12,7 +12,7 @@ export const defineOperand = (e) => {
 
     let value = document.querySelector('#numbersDisplay').innerHTML;
     
-    
+
 
     if(e.target.classList.contains('number-button-color')){
         
@@ -39,16 +39,3 @@ export const defineOperand = (e) => {
     }
 
 };
-
-export const pressEquals = (e) => {
-    e.preventDefault
-
-    if(e.target.id == 'equals'){
-        clearCalculationsDisplay();
-        let value = makeCalculations();
-        updateDisplay(value, numbersDisplay);
-        updateDisplay(value, calculationsDisplay);
-        operationState.rightOperand = null;
-        operationState.operator = null;
-    }
-}
