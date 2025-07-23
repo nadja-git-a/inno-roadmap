@@ -91,3 +91,93 @@ export class PercentageCommand extends Command {
     
   }
 }
+
+export class PowerCommand extends Command {
+  constructor (leftOperand, rightOperand){
+    super();
+    this.leftOperand = Number(leftOperand);
+    this.rightOperand = Number(rightOperand);
+  }
+
+  execute(){
+    let result = 1;
+    for (let i = 0; i < this.rightOperand; i++) {
+      result *= this.leftOperand;
+      console.log('inside the loop' + this.leftOperand)
+    }
+    return result;
+  }
+
+  undo(){
+
+  }
+}
+
+export class ChangeSignCommand extends Command {
+  constructor (num){
+    super();
+    this.num = Number(num);
+  }
+
+  execute(){
+    return -this.num
+  }
+
+  // undo(){
+  //   return this.num
+  // }
+}
+
+export class FactorialCommand extends Command {
+  constructor (num){
+    super();
+    this.num = Number(num);
+  }
+
+  execute() {
+    if (this.num < 0) return NaN;
+  
+    let result = 1;
+    for (let i = 2; i <= this.num; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  undo(){
+    
+  }
+}
+
+export class RootCommand extends Command {
+  constructor (leftOperand, rightOperand){
+    super();
+    this.leftOperand = Number(leftOperand);
+    this.rightOperand = Number(rightOperand);
+  }
+
+  execute() {
+    const a = this.leftOperand;
+    const k = this.rightOperand;
+    const tolerance = 1e-10;
+    const maxIterations = 100;
+
+    if (a < 0 && k % 2 === 0) return NaN; 
+    if (a === 0) return 0;
+
+    let x = a / k; 
+    let step = 0;
+
+    while (step < maxIterations) {
+      let prev = x;
+      x = ((k - 1) * x + a / prev ** (k - 1)) / k;
+
+      if (Math.abs(prev - x) < tolerance) break;
+
+      step++;
+    }
+
+    return x;
+  }
+
+}

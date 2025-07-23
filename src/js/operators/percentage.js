@@ -1,21 +1,23 @@
 import { clearNumbersDisplay, updateDisplay } from "../display/display";
-import { operationState } from "./operands";
+import { state, setRightOperand } from "./operands";
 import { PercentageCommand } from "./operators-commands";
 
 const countPercentage = () => {
-    let operator = operationState.operator;
-    let leftOperand = operationState.leftOperand;
-    let rightOperand = operationState.rightOperand;
+    let operator = state.operator;
+    let leftOperand = state.leftOperand;
+    let rightOperand = state.rightOperand;
+    
+    state.saveHistory();
     
     if(operator == '+' || operator == '-') {
       let percent = new PercentageCommand (leftOperand, rightOperand);
-      operationState.rightOperand = percent.execute();
+      setRightOperand(percent.execute());
       return percent.execute();
     }
   
     if(operator == '*' || operator == '/'){
       let percent = new PercentageCommand (1, rightOperand);
-      operationState.rightOperand = percent.execute();
+      setRightOperand(percent.execute());
       return percent.execute();
     }
 }
@@ -24,7 +26,7 @@ export const pressPercentage = (e) => {
     e.preventDefault();
     if (e.target.value == '%'){
         clearNumbersDisplay();
-        operationState.rightOperand = countPercentage();
-        updateDisplay(operationState.rightOperand, numbersDisplay);
+        setRightOperand(countPercentage());
+        updateDisplay(state.rightOperand, numbersDisplay);
     }
 };

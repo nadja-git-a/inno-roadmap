@@ -1,20 +1,27 @@
-import { showcaseValueOnDisplay } from './display/display.js';
-import { defineOperand } from './operators/operands.js';
-import {pressEquals} from './operators/equals.js'
-
 import '../styles/style.scss';
-import { pressPercentage } from './operators/percentage.js';
-import { pressChangeSign } from './operators/changeSing.js';
-import { pressRoots } from './operators/roots.js';
-import { pressPower } from './operators/power.js';
+import { MemoryButton, NumberButton, OperatorButton, SpecialFunctionButton } from './buttons/buttons.js';
 
 document.addEventListener('DOMContentLoaded', e => {
-  let calculatorBtns = document.querySelector('.buttons');
-  calculatorBtns.addEventListener('click', showcaseValueOnDisplay);
-  calculatorBtns.addEventListener('click', defineOperand);
-  calculatorBtns.addEventListener('click', pressEquals);
-  calculatorBtns.addEventListener('click', pressPercentage);
-  calculatorBtns.addEventListener('click', pressChangeSign);
-  calculatorBtns.addEventListener('click', pressRoots);
-  calculatorBtns.addEventListener('click', pressPower);
+
+  const display = document.querySelector('#numbersDisplay');
+  const buttons = document.querySelectorAll('.buttons button');
+
+  buttons.forEach(btn => {
+    const type = btn.dataset.type; 
+
+    switch (type) {
+      case 'number':
+        new NumberButton(btn, display);
+        break;
+      case 'operator':
+        new OperatorButton(btn, display);
+        break;
+      case 'special':
+        new SpecialFunctionButton(btn, display);
+        break;
+      case 'memory':
+        new MemoryButton(btn, display);
+    }
+  });
+
 });

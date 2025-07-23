@@ -1,25 +1,22 @@
 import { updateDisplay } from "../display/display";
 import{clearNumbersDisplay} from '../display/display'
-import { operationState } from "./operands";
+import { state, setLeftOperand, setRightOperand } from "./operands";
+import { ChangeSignCommand } from "./operators-commands";
 
 export const pressChangeSign = (e) => {
     e.preventDefault();
     let numbersDisplay = document.querySelector('#numbersDisplay'); 
     if(e.target.id == 'changeSign'){
-        let num = changeSign(numbersDisplay.textContent);
+        console.log(numbersDisplay.textContent);
+        let num = new ChangeSignCommand(numbersDisplay.textContent).execute();
         clearNumbersDisplay()
         updateDisplay(num, numbersDisplay);
-        if(operationState.leftOperand == null || !operationState.rightOperand){
-            operationState.leftOperand = num;
-            console.log('operationState.leftOperand change sign: '+ operationState.leftOperand);
+        if(state.leftOperand == null || !state.rightOperand){
+            setLeftOperand(num);
+            console.log('state.leftOperand change sign: '+ state.leftOperand);
         } else {
-            operationState.rightOperand = num;
-            console.log('operationState.rightOperand change sign: '+ operationState.rightOperand);
+            setRightOperand(num);
+            console.log('state.rightOperand change sign: '+ state.rightOperand);
         }
     } 
 };
-
-const changeSign = (num) => {
-    console.log('negative: ' + num);
-    return -num;
-}

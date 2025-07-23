@@ -1,5 +1,5 @@
 
-import {operationState} from '../operators/operands.js'
+import {state} from '../operators/operands.js'
 
 let numbersDisplay = document.querySelector('#numbersDisplay');
 let calculationsDisplay = document.querySelector('#calculationsDisplay');
@@ -41,11 +41,11 @@ export const showcaseValueOnDisplay = e => {
     clearNumbersDisplay();
     clearCalculationsDisplay();
     value = 0;
-    operationState.leftOperand = null;
-    operationState.rightOperand = null;
-    operationState.operator = null;
+    state.resetVariables();
+    state.cleanHistory();
     updateDisplay(value, numbersDisplay);
     updateDisplay(value, calculationsDisplay);
     console.log('all clean');
+    console.log(state);
    }
 };
