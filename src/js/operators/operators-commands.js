@@ -20,7 +20,7 @@ export class AddCommand extends Command {
   }
 
   undo() {
-    return this.leftOperand - this.rightOperand;
+    return this.leftOperand;
   }
 }
 
@@ -36,7 +36,7 @@ export class SubtractCommand extends Command {
   }
 
   undo() {
-    return this.leftOperand + this.rightOperand;
+    return this.leftOperand;
   }
 }
 
@@ -52,7 +52,7 @@ export class MultiplyCommand extends Command {
   }
 
   undo() {
-    return this.leftOperand / this.rightOperand;
+    return this.leftOperand;
   }
 }
 
@@ -71,7 +71,7 @@ export class DivideCommand extends Command {
   }
 
   undo() {
-    return this.leftOperand * this.rightOperand;
+    return this.leftOperand;
   }
 }
 
@@ -88,7 +88,7 @@ export class PercentageCommand extends Command {
   }
 
   undo() {
-    
+    return this.rightOperand;
   }
 }
 
@@ -109,7 +109,7 @@ export class PowerCommand extends Command {
   }
 
   undo(){
-
+    return this.leftOperand;
   }
 }
 
@@ -117,15 +117,16 @@ export class ChangeSignCommand extends Command {
   constructor (num){
     super();
     this.num = Number(num);
+    this.previousNum = num;
   }
 
   execute(){
     return -this.num
   }
 
-  // undo(){
-  //   return this.num
-  // }
+  undo(){
+    return this.previousNum;
+  }
 }
 
 export class FactorialCommand extends Command {
@@ -145,7 +146,7 @@ export class FactorialCommand extends Command {
   }
 
   undo(){
-    
+    return this.num;
   }
 }
 
@@ -178,6 +179,10 @@ export class RootCommand extends Command {
     }
 
     return x;
+  }
+
+  undo(){
+    return this.leftOperand
   }
 
 }

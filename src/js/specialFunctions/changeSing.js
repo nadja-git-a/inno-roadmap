@@ -1,7 +1,8 @@
-import { updateDisplay } from "../display/display";
-import{clearNumbersDisplay} from '../display/display'
-import { state, setLeftOperand, setRightOperand } from "./operands";
-import { ChangeSignCommand } from "./operators-commands";
+import { updateDisplay } from "../display/display.js";
+import{clearNumbersDisplay} from '../display/display.js'
+import { state, setLeftOperand, setRightOperand } from "../operators/operands.js";
+import { ChangeSignCommand } from "../operators/operators-commands.js";
+import { commandManager } from "./undo.js";
 
 export const pressChangeSign = (e) => {
     e.preventDefault();
@@ -9,6 +10,7 @@ export const pressChangeSign = (e) => {
     if(e.target.id == 'changeSign'){
         console.log(numbersDisplay.textContent);
         let num = new ChangeSignCommand(numbersDisplay.textContent).execute();
+        commandManager.remember(new ChangeSignCommand(numbersDisplay.textContent));
         clearNumbersDisplay()
         updateDisplay(num, numbersDisplay);
         if(state.leftOperand == null || !state.rightOperand){

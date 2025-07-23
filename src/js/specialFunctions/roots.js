@@ -1,6 +1,7 @@
-import { clearNumbersDisplay, updateDisplay } from "../display/display";
-import { state, setLeftOperand, setRightOperand, setOperator } from "./operands";
-import { RootCommand } from "./operators-commands";
+import { clearNumbersDisplay, updateDisplay } from "../display/display.js";
+import { state, setLeftOperand, setRightOperand, setOperator } from "../operators/operands.js";
+import { RootCommand } from "../operators/operators-commands.js";
+import { commandManager } from "./undo.js";
 
 export const pressRoots = (e) => {
     e.preventDefault();
@@ -45,17 +46,20 @@ export const pressRoots = (e) => {
 
 const extractSquare = (num) => {
     let root = new RootCommand(num, 2).execute();
+    commandManager.remember(new RootCommand(num, 2));
     return root;
 
 }
 
 const extractCube = (num) => {
     let root = new RootCommand(num, 3).execute();
+    commandManager.remember(new RootCommand(num, 3));
     return root;
 }
 
 export const extractYRoot = (num) => {
     let root = new RootCommand(num, state.rightOperand).execute();
+    commandManager.remember(new RootCommand(num, state.rightOperand));
     clearNumbersDisplay();
     updateDisplay(root, numbersDisplay)
     return root;

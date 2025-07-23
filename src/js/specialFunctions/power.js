@@ -1,6 +1,7 @@
-import { clearNumbersDisplay, updateDisplay } from "../display/display";
-import { state, setLeftOperand, setRightOperand, setOperator } from "./operands";
-import { PowerCommand } from "./operators-commands";
+import { clearNumbersDisplay, updateDisplay } from "../display/display.js";
+import { state, setLeftOperand, setRightOperand, setOperator } from "../operators/operands.js";
+import { PowerCommand } from "../operators/operators-commands.js";
+import {commandManager} from './undo.js'
 
 export const pressPower = (e) => {
     e.preventDefault();
@@ -61,16 +62,19 @@ export const pressPower = (e) => {
 
 const extractSquare = (num) => {
     let power = new PowerCommand(num, 2).execute();
+    commandManager.remember(new PowerCommand(num, 2));
     return power;
 }
 
 const extractCube = (num) => {
     let power = new PowerCommand(num, 3).execute();
+    commandManager.remember(new PowerCommand(num, 3));
     return power;
 }
 
 export const extractPowerOfY = (num) => {
     let power = new PowerCommand(num, state.rightOperand).execute();
+    commandManager.remember(new PowerCommand(num, state.rightOperand));
     clearNumbersDisplay();
     updateDisplay(power, numbersDisplay)
     return power;
@@ -78,6 +82,7 @@ export const extractPowerOfY = (num) => {
 
 export const extractPowerOfX = (num) => {
     let power = new PowerCommand(10, num).execute();
+    commandManager.remember(new PowerCommand(10, num));
     clearNumbersDisplay();
     updateDisplay(power, numbersDisplay)
     return power;

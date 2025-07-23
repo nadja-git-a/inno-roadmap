@@ -1,8 +1,8 @@
-import { updateDisplay, clearCalculationsDisplay } from "../display/display";
-import { state, setRightOperand, setOperator } from "./operands";
-import { extractPowerOfY } from "./power";
-import { makeCalculations } from "./operators";
-import { extractYRoot } from "./roots";
+import { updateDisplay, clearCalculationsDisplay } from "../display/display.js";
+import { state, setRightOperand, setOperator } from "./operands.js";
+import { extractPowerOfY } from "../specialFunctions/power.js";
+import { makeCalculations } from "./operators.js";
+import { extractYRoot } from "../specialFunctions/roots.js";
 
 export const pressEquals = (e) => {
     e.preventDefault

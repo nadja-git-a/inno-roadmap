@@ -1,6 +1,7 @@
-import { clearNumbersDisplay, updateDisplay } from "../display/display";
-import { state, setLeftOperand, setRightOperand } from "./operands";
-import { FactorialCommand } from "./operators-commands";
+import { clearNumbersDisplay, updateDisplay } from "../display/display.js";
+import { state, setLeftOperand, setRightOperand } from "../operators/operands.js";
+import { FactorialCommand } from "../operators/operators-commands.js";
+import { commandManager } from "./undo.js";
 
 export const pressFactorial = (e) => {
     e.preventDefault();
@@ -9,6 +10,7 @@ export const pressFactorial = (e) => {
         let num = document.querySelector('#numbersDisplay').innerHTML;
 
         num = new FactorialCommand(num).execute();
+        commandManager.remember(new FactorialCommand(num));
         clearNumbersDisplay();
         updateDisplay(num, numbersDisplay)
         if(state.leftOperand == null || !state.rightOperand){

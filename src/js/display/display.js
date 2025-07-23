@@ -1,5 +1,6 @@
 
 import {state} from '../operators/operands.js'
+import { commandManager } from '../specialFunctions/undo.js';
 
 let numbersDisplay = document.querySelector('#numbersDisplay');
 let calculationsDisplay = document.querySelector('#calculationsDisplay');
@@ -43,6 +44,7 @@ export const showcaseValueOnDisplay = e => {
     value = 0;
     state.resetVariables();
     state.cleanHistory();
+    commandManager.clearHistory();
     updateDisplay(value, numbersDisplay);
     updateDisplay(value, calculationsDisplay);
     console.log('all clean');

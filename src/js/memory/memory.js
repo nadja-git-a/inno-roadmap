@@ -1,5 +1,5 @@
-import { clearNumbersDisplay } from "../display/display";
-import { state } from "../operators/operands";
+import { clearNumbersDisplay } from "../display/display.js";
+import { state } from "../operators/operands.js";
 
 let numbersDisplay = document.querySelector('#numbersDisplay');
 
