@@ -1,5 +1,4 @@
-
-import {state} from '../operators/operands.js'
+import { state } from '../operators/operands.js';
 import { commandManager } from '../specialFunctions/undo.js';
 
 let numbersDisplay = document.querySelector('#numbersDisplay');
@@ -10,13 +9,12 @@ export const clearNumbersDisplay = () => {
 };
 
 export const clearCalculationsDisplay = () => {
-    calculationsDisplay.innerHTML = '';
+  calculationsDisplay.innerHTML = '';
 };
 
 export const updateDisplay = (value, targetDisplay) => {
-    
   if (targetDisplay.innerHTML == '0') {
-    if(value == '.') {
+    if (value == '.') {
       targetDisplay.innerHTML += value;
     } else {
       targetDisplay.innerHTML = '';
@@ -25,20 +23,19 @@ export const updateDisplay = (value, targetDisplay) => {
   } else {
     targetDisplay.innerHTML += value;
   }
-
 };
 
 export const showcaseValueOnDisplay = e => {
-   e.preventDefault();
+  e.preventDefault();
 
-   let value = e.target.value;
-   updateDisplay(value, calculationsDisplay);
+  let value = e.target.value;
+  updateDisplay(value, calculationsDisplay);
 
-   if (!isNaN(value) || value == '.' || value == '-') {
+  if (!isNaN(value) || value == '.' || value == '-') {
     updateDisplay(value, numbersDisplay);
-   }
+  }
 
-   if (value == 'AC') {
+  if (value == 'AC') {
     clearNumbersDisplay();
     clearCalculationsDisplay();
     value = 0;
@@ -49,5 +46,5 @@ export const showcaseValueOnDisplay = e => {
     updateDisplay(value, calculationsDisplay);
     console.log('all clean');
     console.log(state);
-   }
+  }
 };

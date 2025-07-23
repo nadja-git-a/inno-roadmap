@@ -38,89 +38,208 @@
       <div
         id="calculationsDisplay"
         class="calculations-display display-positioning"
-      >0</div>
-      <div id="numbersDisplay" class="numbers-display display-positioning" >0</div>
+      >
+        0
+      </div>
+      <div id="numbersDisplay" class="numbers-display display-positioning">
+        0
+      </div>
       <div class="buttons">
         <button aria-label="open parenthesis" disabled>(</button>
         <button aria-label="close parenthesis" disabled>)</button>
-        <button aria-label="memory clear" value="mc" data-type="memory">mc</button>
-        <button aria-label="memory add" value="m+" data-type="memory">m+</button>
-        <button aria-label="memory subtract" value="m-" data-type="memory">m-</button>
-        <button aria-label="memory recall" value="mr" data-type="memory">mr</button>
+        <button aria-label="memory clear" value="mc" data-type="memory">
+          mc
+        </button>
+        <button aria-label="memory add" value="m+" data-type="memory">
+          m+
+        </button>
+        <button aria-label="memory subtract" value="m-" data-type="memory">
+          m-
+        </button>
+        <button aria-label="memory recall" value="mr" data-type="memory">
+          mr
+        </button>
         <button aria-label="all clear" value="AC" data-type="number">AC</button>
-        <button aria-label="change sign" id="changeSign" value="+/-" data-type="special">
+        <button
+          aria-label="change sign"
+          id="changeSign"
+          value="+/-"
+          data-type="special"
+        >
           +/-
         </button>
         <button aria-label="percent" value="%" data-type="special">%</button>
 
-        <button class="operator-button-color" aria-label="divide" value="/" data-type="operator">
+        <button
+          class="operator-button-color"
+          aria-label="divide"
+          value="/"
+          data-type="operator"
+        >
           ÷
         </button>
 
         <button aria-label="second function" disabled>2<sup>nd</sup></button>
-        <button aria-label="x squared" value="squared" data-type="special">x²</button>
-        <button aria-label="x cubed" value="cubed" data-type="special">x³</button>
-        <button aria-label="x to the power of y" value="powerOfY" data-type="special">xʸ</button>
+        <button aria-label="x squared" value="squared" data-type="special">
+          x²
+        </button>
+        <button aria-label="x cubed" value="cubed" data-type="special">
+          x³
+        </button>
+        <button
+          aria-label="x to the power of y"
+          value="powerOfY"
+          data-type="special"
+        >
+          xʸ
+        </button>
         <button aria-label="e to the power of x" disabled>e<sup>x</sup></button>
-        <button aria-label="10 to the power of x" value="powerOfX" data-type="special">
+        <button
+          aria-label="10 to the power of x"
+          value="powerOfX"
+          data-type="special"
+        >
           10ˣ
         </button>
 
-        <button class="number-button-color" aria-label="seven" value="7" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="seven"
+          value="7"
+          data-type="number"
+        >
           7
         </button>
-        <button class="number-button-color" aria-label="eight" value="8" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="eight"
+          value="8"
+          data-type="number"
+        >
           8
         </button>
-        <button class="number-button-color" aria-label="nine" value="9" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="nine"
+          value="9"
+          data-type="number"
+        >
           9
         </button>
 
-        <button class="operator-button-color" aria-label="multiply" value="*" data-type="operator">
+        <button
+          class="operator-button-color"
+          aria-label="multiply"
+          value="*"
+          data-type="operator"
+        >
           x
         </button>
 
         <button aria-label="reciprocal" disabled>
           <sup>1</sup>&frasl;<sub>x</sub>
         </button>
-        <button aria-label="square root" class="roots" value="squareRoot" data-type="special"><sup>2</sup>√x</button>
-        <button aria-label="cube root" class="roots" value="cubeRoot" data-type="special"><sup>3</sup>√x</button>
-        <button aria-label="y root of x" class="roots" value="yRoot" data-type="special"><sup>y</sup>√x</button>
+        <button
+          aria-label="square root"
+          class="roots"
+          value="squareRoot"
+          data-type="special"
+        >
+          <sup>2</sup>√x
+        </button>
+        <button
+          aria-label="cube root"
+          class="roots"
+          value="cubeRoot"
+          data-type="special"
+        >
+          <sup>3</sup>√x
+        </button>
+        <button
+          aria-label="y root of x"
+          class="roots"
+          value="yRoot"
+          data-type="special"
+        >
+          <sup>y</sup>√x
+        </button>
         <button aria-label="natural logarithm" disabled>In</button>
         <button aria-label="log base 10" disabled>log<sub>10</sub></button>
 
-        <button class="number-button-color" aria-label="four" value="4" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="four"
+          value="4"
+          data-type="number"
+        >
           4
         </button>
-        <button class="number-button-color" aria-label="five" value="5" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="five"
+          value="5"
+          data-type="number"
+        >
           5
         </button>
-        <button class="number-button-color" aria-label="six" value="6" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="six"
+          value="6"
+          data-type="number"
+        >
           6
         </button>
 
-        <button class="operator-button-color" aria-label="minus" value="-" data-type="operator">
+        <button
+          class="operator-button-color"
+          aria-label="minus"
+          value="-"
+          data-type="operator"
+        >
           -
         </button>
 
-        <button aria-label="factorial" value="factorial" data-type="special">x!</button>
+        <button aria-label="factorial" value="factorial" data-type="special">
+          x!
+        </button>
         <button aria-label="sine" disabled>sin</button>
         <button aria-label="cosine" disabled>cos</button>
         <button aria-label="tangent" disabled>tan</button>
         <button aria-label="Euler's number" disabled>e</button>
         <button aria-label="enter exponent" disabled>EE</button>
 
-        <button class="number-button-color" aria-label="one" value="1" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="one"
+          value="1"
+          data-type="number"
+        >
           1
         </button>
-        <button class="number-button-color" aria-label="two" value="2" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="two"
+          value="2"
+          data-type="number"
+        >
           2
         </button>
-        <button class="number-button-color" aria-label="three" value="3" data-type="number">
+        <button
+          class="number-button-color"
+          aria-label="three"
+          value="3"
+          data-type="number"
+        >
           3
         </button>
 
-        <button class="operator-button-color" aria-label="plus" value="+" data-type="operator">
+        <button
+          class="operator-button-color"
+          aria-label="plus"
+          value="+"
+          data-type="operator"
+        >
           +
         </button>
 
@@ -133,14 +252,19 @@
         <button
           class="number-button-color long-button"
           aria-label="zero"
-          value="0" data-type="number"
-        >0</button>
+          value="0"
+          data-type="number"
+        >
+          0
+        </button>
         <button
           class="number-button-color"
           aria-label="decimal comma"
           value="."
           data-type="number"
-        >.</button>
+        >
+          .
+        </button>
         <button
           id="equals"
           class="operator-button-color"

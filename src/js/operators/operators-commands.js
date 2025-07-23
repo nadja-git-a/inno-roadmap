@@ -76,7 +76,7 @@ export class DivideCommand extends Command {
 }
 
 export class PercentageCommand extends Command {
-  constructor (leftOperand, rightOperand) {
+  constructor(leftOperand, rightOperand) {
     super();
     this.leftOperand = Number(leftOperand);
     this.rightOperand = Number(rightOperand);
@@ -93,51 +93,51 @@ export class PercentageCommand extends Command {
 }
 
 export class PowerCommand extends Command {
-  constructor (leftOperand, rightOperand){
+  constructor(leftOperand, rightOperand) {
     super();
     this.leftOperand = Number(leftOperand);
     this.rightOperand = Number(rightOperand);
   }
 
-  execute(){
+  execute() {
     let result = 1;
     for (let i = 0; i < this.rightOperand; i++) {
       result *= this.leftOperand;
-      console.log('inside the loop' + this.leftOperand)
+      console.log('inside the loop' + this.leftOperand);
     }
     return result;
   }
 
-  undo(){
+  undo() {
     return this.leftOperand;
   }
 }
 
 export class ChangeSignCommand extends Command {
-  constructor (num){
+  constructor(num) {
     super();
     this.num = Number(num);
     this.previousNum = num;
   }
 
-  execute(){
-    return -this.num
+  execute() {
+    return -this.num;
   }
 
-  undo(){
+  undo() {
     return this.previousNum;
   }
 }
 
 export class FactorialCommand extends Command {
-  constructor (num){
+  constructor(num) {
     super();
     this.num = Number(num);
   }
 
   execute() {
     if (this.num < 0) return NaN;
-  
+
     let result = 1;
     for (let i = 2; i <= this.num; i++) {
       result *= i;
@@ -145,13 +145,13 @@ export class FactorialCommand extends Command {
     return result;
   }
 
-  undo(){
+  undo() {
     return this.num;
   }
 }
 
 export class RootCommand extends Command {
-  constructor (leftOperand, rightOperand){
+  constructor(leftOperand, rightOperand) {
     super();
     this.leftOperand = Number(leftOperand);
     this.rightOperand = Number(rightOperand);
@@ -163,10 +163,10 @@ export class RootCommand extends Command {
     const tolerance = 1e-10;
     const maxIterations = 100;
 
-    if (a < 0 && k % 2 === 0) return NaN; 
+    if (a < 0 && k % 2 === 0) return NaN;
     if (a === 0) return 0;
 
-    let x = a / k; 
+    let x = a / k;
     let step = 0;
 
     while (step < maxIterations) {
@@ -181,8 +181,7 @@ export class RootCommand extends Command {
     return x;
   }
 
-  undo(){
-    return this.leftOperand
+  undo() {
+    return this.leftOperand;
   }
-
 }
