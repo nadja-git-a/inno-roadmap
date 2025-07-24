@@ -1,3 +1,5 @@
+import { clearCalculationsDisplay, clearNumbersDisplay } from "../display/display.js";
+
 export class Command {
   execute() {
     throw new Error('');
@@ -64,9 +66,6 @@ export class DivideCommand extends Command {
   }
 
   execute() {
-    if (this.leftOperand === 0 || this.rightOperand === 0) {
-      throw new Error('Division by zero');
-    }
     return this.leftOperand / this.rightOperand;
   }
 
@@ -83,8 +82,7 @@ export class PercentageCommand extends Command {
   }
 
   execute() {
-    let percent = this.rightOperand / 100;
-    return this.leftOperand * percent;
+    return this.leftOperand * (this.rightOperand / 100);
   }
 
   undo() {
@@ -93,10 +91,11 @@ export class PercentageCommand extends Command {
 }
 
 export class PowerCommand extends Command {
-  constructor(leftOperand, rightOperand) {
+  constructor(leftOperand, rightOperand, mode = 'normal') {
     super();
     this.leftOperand = Number(leftOperand);
     this.rightOperand = Number(rightOperand);
+    this.mode = mode;
   }
 
   execute() {
@@ -109,7 +108,12 @@ export class PowerCommand extends Command {
   }
 
   undo() {
-    return this.leftOperand;
+    if (this.mode === 'powerOfX') {
+      return this.rightOperand;
+    } else {
+      return this.leftOperand;
+    }
+    
   }
 }
 

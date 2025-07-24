@@ -11,18 +11,23 @@ export const pressFactorial = e => {
   e.preventDefault();
 
   if (e.target.value == 'factorial') {
-    let num = document.querySelector('#numbersDisplay').innerHTML;
+  let num = document.querySelector('#numbersDisplay').innerHTML;
 
-    num = new FactorialCommand(num).execute();
-    commandManager.remember(new FactorialCommand(num));
-    clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
-    if (state.leftOperand == null || !state.rightOperand) {
-      setLeftOperand(num);
-      console.log('state.leftOperand factorial: ' + state.leftOperand);
-    } else {
-      setRightOperand(num);
-      console.log('state.rightOperand factorial: ' + state.rightOperand);
-    }
+  const command = new FactorialCommand(num);
+  let result = command.execute();
+
+  commandManager.remember(command); 
+
+  clearNumbersDisplay();
+  updateDisplay(result, numbersDisplay);
+  updateDisplay('!', calculationsDisplay)
+
+  if (state.leftOperand == null || !state.rightOperand) {
+    setLeftOperand(result);
+    console.log('state.leftOperand factorial: ' + state.leftOperand);
+  } else {
+    setRightOperand(result);
+    console.log('state.rightOperand factorial: ' + state.rightOperand);
+  }
   }
 };

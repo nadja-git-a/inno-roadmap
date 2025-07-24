@@ -13,7 +13,12 @@ export const clearCalculationsDisplay = () => {
 };
 
 export const updateDisplay = (value, targetDisplay) => {
-  if (targetDisplay.innerHTML == '0') {
+  if(targetDisplay.innerHTML > 999999999999999){
+    alert('number is too large');
+    clearCalculationsDisplay();
+    clearNumbersDisplay();
+  } else {
+    if (targetDisplay.innerHTML == '0') {
     if (value == '.') {
       targetDisplay.innerHTML += value;
     } else {
@@ -22,6 +27,7 @@ export const updateDisplay = (value, targetDisplay) => {
     }
   } else {
     targetDisplay.innerHTML += value;
+  }
   }
 };
 

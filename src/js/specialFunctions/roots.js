@@ -6,7 +6,9 @@ import {
   setOperator,
 } from '../operators/operands.js';
 import { RootCommand } from '../operators/operators-commands.js';
+import { makeCalculations } from '../operators/operators.js';
 import { commandManager } from './undo.js';
+
 
 export const pressRoots = e => {
   e.preventDefault();
@@ -40,9 +42,16 @@ export const pressRoots = e => {
   }
 
   if (e.target.value == 'yRoot') {
-    state.leftOperand = num;
+    if(state.operator){
+      setLeftOperand(makeCalculations());
+      state.saveHistory();
+    } else {
+      state.leftOperand = num;
+    }
+   
     num = '';
-    updateDisplay(num, numbersDisplay);
+    updateDisplay(num, numbersDisplay); 
+    updateDisplay(' √ in power of ', calculationsDisplay);
     setOperator('√');
     clearNumbersDisplay();
   }

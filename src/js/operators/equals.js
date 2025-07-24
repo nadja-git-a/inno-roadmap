@@ -6,7 +6,8 @@ import { extractYRoot } from '../specialFunctions/roots.js';
 
 export const pressEquals = e => {
   e.preventDefault;
-  if (e.target.id == 'equals' && state.operator == '^') {
+  if(state.leftOperand !== null && state.rightOperand !== null && state.operator!== null ){
+if (e.target.id == 'equals' && state.operator == '^') {
     extractPowerOfY(state.leftOperand);
     state.saveHistory();
   } else if (e.target.id == 'equals' && state.operator == '√') {
@@ -22,5 +23,12 @@ export const pressEquals = e => {
     console.log(state.rightOperand);
     setOperator(null);
   }
+
   console.log(state);
+  clearCalculationsDisplay();
+  updateDisplay(state.leftOperand, calculationsDisplay)
+  } else {
+    alert('enter numbers and operator')
+    console.log(state);
+  } 
 };

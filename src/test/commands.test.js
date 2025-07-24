@@ -45,7 +45,7 @@ describe('PercentageCommand test', () => {
   test('percentage num ', () => {
     const command = new PercentageCommand(200, 10);
     expect(command.execute()).toBe(20);
-    expect(command.undo()).toBe(200);
+    expect(command.undo()).toBe(10);
   });
 });
 

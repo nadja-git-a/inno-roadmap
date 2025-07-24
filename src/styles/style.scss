@@ -1,6 +1,8 @@
 @use './variables';
 @use 'sass:color';
 
+@include variables.define-theme(variables.$themes);
+
 body {
   margin: 0;
 }
@@ -21,7 +23,7 @@ body {
     'numbers-display'
     'buttons';
 
-  background-color: variables.$dark-theme-dark-grey-color;
+  background-color: var(--dark-color);
   border-radius: variables.$border-radius;
   box-shadow: 0px 7px 20px rgb(41, 41, 41);
 }
@@ -37,7 +39,7 @@ body {
 .calculations-display {
   grid-area: calculations-display;
 
-  color: color.scale(variables.$dark-theme-text-color, $lightness: -10%);
+  color: var(--text-color-dimmed);
   
   font-family: variables.$font-family;
 }
@@ -45,7 +47,7 @@ body {
 .numbers-display {
   grid-area: numbers-display;
 
-  color: variables.$dark-theme-text-color;
+  color: var(--text-color);
   font-size: variables.$font-display-size;
   font-family: variables.$font-family;
 }
@@ -71,10 +73,10 @@ body {
 
     flex-grow: 1;
 
-    border: solid 0.5px variables.$dark-theme-dark-grey-color;
+    border: solid 0.5px var(--dark-color);
 
-    color: variables.$dark-theme-text-color;
-    background-color: variables.$dark-theme-medium-grey-color;
+    color: var(--text-color);
+    background-color: var(--medium-color);
     font-size: variables.$font-values-size;
 
     &:nth-child(41) {
@@ -86,10 +88,7 @@ body {
     }
 
     &:hover {
-      background-color: color.scale(
-        variables.$dark-theme-medium-grey-color,
-        $lightness: -20%
-      );
+      background-color: var(--medium-color-dimmed);
     }
 
     &:focus-visible {
@@ -98,35 +97,26 @@ body {
     }
 
     &:disabled {
-      background-color: color.scale(
-        variables.$dark-theme-medium-grey-color,
-        $lightness: -20%
-      );
-      color: color.scale(variables.$dark-theme-text-color, $lightness: -20%);
-      border-color: variables.$dark-theme-light-grey-color;
+      background-color: var(--medium-color-dimmed);
+      color: var(--text-color-dimmed);
+      border-color: var(--light-color);
     }
   }
 
   .number-button-color {
-    background-color: variables.$dark-theme-light-grey-color;
+    background-color: var(--light-color);
     font-size: variables.$font-numbers-size;
 
     &:hover {
-      background-color: color.scale(
-        variables.$dark-theme-light-grey-color,
-        $lightness: -20%
-      );
+      background-color: var(--light-color-dimmed);
     }
   }
 
   .operator-button-color {
-    background-color: variables.$dark-theme-orange-color;
+    background-color: var(--accent-color);
 
     &:hover {
-      background-color: color.scale(
-        variables.$dark-theme-orange-color,
-        $lightness: -20%
-      );
+      background-color: var(--accent-color-dimmed);
     }
   }
 
@@ -151,14 +141,14 @@ input[type='radio'] {
   }
 }
 
-input[value='dark-theme'] {
+input[value='dark'] {
   background-color: variables.$dark-theme-radio-color;
 }
 
-input[value='light-theme'] {
+input[value='light'] {
   background-color: variables.$light-theme-radio-color;
 }
 
-input[value='pink-theme'] {
-  background-color: variables.$pink-theme-radio-color;
+input[value='cute'] {
+  background-color: variables.$cute-theme-radio-color;
 }

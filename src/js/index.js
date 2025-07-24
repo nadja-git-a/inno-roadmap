@@ -4,11 +4,12 @@ import {
   NumberButton,
   OperatorButton,
   SpecialFunctionButton,
+  ThemeButton,
 } from './buttons/buttons.js';
 
 document.addEventListener('DOMContentLoaded', e => {
   const display = document.querySelector('#numbersDisplay');
-  const buttons = document.querySelectorAll('.buttons button');
+  const buttons = document.querySelectorAll('[data-type]');
 
   buttons.forEach(btn => {
     const type = btn.dataset.type;
@@ -25,6 +26,10 @@ document.addEventListener('DOMContentLoaded', e => {
         break;
       case 'memory':
         new MemoryButton(btn, display);
+        break;
+      case 'themes':
+        new ThemeButton(btn);
+        break;
     }
   });
 });

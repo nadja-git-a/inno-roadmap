@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $font-family: sans-serif;
 
 $font-values-size: 12px;
@@ -6,23 +8,71 @@ $font-display-size: 38px;
 
 $border-radius: 10px;
 
-$dark-theme-radio-color: black;
-$dark-theme-dark-grey-color: #48494b;
-$dark-theme-medium-grey-color: #5a5b5d;
-$dark-theme-light-grey-color: #757678;
-$dark-theme-orange-color: #f2a13d;
-$dark-theme-text-color: #e8eaeb;
+$dark-theme-radio-color:black;
+$light-theme-radio-color:#fff6d0;
+$cute-theme-radio-color:#ffa9bc;
 
-$light-theme-radio-color: #fff6d0;
-$light-theme-pure-white-color: #ffffff;
-$light-theme-medium-white-color: #f9f6e3;
-$light-theme-yellowish-white-color: #fff1d6;
-$light-theme-orange-color: #f2a13d;
-$light-theme-text-color: #5b4111;
+$themes: (
+  "dark": (
+    radio-color: black,
+    dark-color: #48494b,
+    
+    medium-color: #5a5b5d,
+    medium-color-dimmed: color.scale(#5a5b5d, $lightness: -20%),
+    
+    light-color: #757678,
+    light-color-dimmed: color.scale(#757678, $lightness: -20%),
+    
+    text-color: #e8eaeb,
+    text-color-dimmed: color.scale(#e8eaeb, $lightness: -10%),
+    
+    accent-color: #f2a13d,
+    accent-color-dimmed: color.scale(#f2a13d, $lightness: -20%)
+  ),
 
-$pink-theme-radio-color: #ffa9bc;
-$pink-theme-dark-pink-color: #ff419d;
-$pink-theme-medium-pink-color: #ff89ba;
-$pink-theme-light-pink-color: #ffb7cd;
-$pink-theme-pink-color: #f76ca9;
-$pink-theme-text-color: #f8f8f8;
+  "light": (
+    radio-color: #fff6d0,
+    dark-color: #ffeee2,
+    
+    medium-color: #ffe0bf,
+    medium-color-dimmed: color.scale(#ffe0bf, $lightness: -20%),
+    
+    light-color: #ffde9f,
+    light-color-dimmed: color.scale(#ffde9f, $lightness: -20%),
+    
+    text-color: #5b4111,
+    text-color-dimmed: color.scale(#5b4111, $lightness: -10%),
+    
+    accent-color: #f2a13d,
+    accent-color-dimmed: color.scale(#f2a13d, $lightness: -20%)
+  ),
+
+  "cute": (
+    radio-color: #ffa9bc,
+    dark-color: #ff419d,
+    
+    medium-color: #ff89ba,
+    medium-color-dimmed: color.scale(#ff89ba, $lightness: -20%),
+    
+    light-color: #ffb7cd,
+    light-color-dimmed: color.scale(#ffb7cd, $lightness: -20%),
+    
+    text-color: #f8f8f8,
+    text-color-dimmed: color.scale(#f8f8f8, $lightness: -10%),
+    
+    accent-color: #d12771,
+    accent-color-dimmed: color.scale(#d12771, $lightness: -20%)
+  )
+);
+
+@mixin define-theme($themes){
+    @each $theme-name, $theme-map in $themes {
+      [data-theme="#{$theme-name}"] {
+        @each $prop, $value in $theme-map {
+          --#{$prop}: #{$value};
+        }
+      }
+    }
+}
+  
+

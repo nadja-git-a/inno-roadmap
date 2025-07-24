@@ -8,14 +8,14 @@ import { pressPower } from '../specialFunctions/power.js';
 import { pressFactorial } from '../specialFunctions/factorial.js';
 import { pressMemory } from '../memory/memory.js';
 import { pressUndo } from '../specialFunctions/undo.js';
+import { pressThemes } from '../themes/themes.js';
 
 export class CalculatorButton {
   constructor(buttonElement, calculatorDisplay) {
     this.button = buttonElement;
-    this.calculator = calculatorDisplay;
+    // this.calculator = calculatorDisplay;
     this.button.addEventListener('click', this.onClick.bind(this));
   }
-
   onClick(e) {}
 }
 
@@ -78,5 +78,16 @@ export class MemoryButton extends CalculatorButton {
   onClick(e) {
     const value = this.button.value;
     pressMemory(e);
+  }
+}
+
+export class ThemeButton {
+  constructor(radio){
+    this.radio = radio;
+    this.radio.addEventListener('change', this.onClick.bind(this));
+  }
+
+  onClick(e){
+    pressThemes(e);
   }
 }

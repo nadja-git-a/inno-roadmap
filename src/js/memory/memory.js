@@ -1,4 +1,4 @@
-import { clearNumbersDisplay } from '../display/display.js';
+import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
 import { state } from '../operators/operands.js';
 
 let numbersDisplay = document.querySelector('#numbersDisplay');

@@ -7,8 +7,7 @@ import {
 import { state, setLeftOperand } from './operands.js';
 import {
   clearNumbersDisplay,
-  showcaseResultOnDisplay,
-  updateDisplay,
+  clearCalculationsDisplay
 } from '../display/display.js';
 import { extractPowerOfY } from '../specialFunctions/power.js';
 import { extractYRoot } from '../specialFunctions/roots.js';
@@ -46,12 +45,18 @@ export const makeCalculations = () => {
     return multiplication.execute();
   }
   if (operator == '/') {
-    let division = new DivideCommand(leftOperand, rightOperand);
-    commandManager.remember(new DivideCommand(leftOperand, rightOperand));
-    console.log('division works: ' + division.execute());
-    setLeftOperand(division.execute());
-    clearNumbersDisplay();
-    return division.execute();
+    if (leftOperand == 0 || rightOperand == 0) { 
+      alert('division by zero');
+      return 0;
+    } else {
+      let division = new DivideCommand(leftOperand, rightOperand);
+      commandManager.remember(new DivideCommand(leftOperand, rightOperand));
+      console.log('division works: ' + division.execute());
+      setLeftOperand(division.execute());
+      clearNumbersDisplay();
+      return division.execute();
+    }
+    
   }
   if (operator == '^') {
     let powerY = extractPowerOfY(state.leftOperand);

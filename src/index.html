@@ -1,5 +1,5 @@
 <!DOCTYPE html lang="en">
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,8 +14,9 @@
           type="radio"
           id="dark-theme"
           name="theme"
-          aria-label="dark-theme"
-          value="dark-theme"
+          aria-label="dark theme"
+          value="dark"
+          data-type="themes"
           checked
         />
         <label for="light-theme"></label>
@@ -23,27 +24,25 @@
           type="radio"
           id="light-theme"
           name="theme"
-          aria-label="light-theme"
-          value="light-theme"
+          aria-label="light theme"
+          value="light"
+          data-type="themes"
         />
-        <label for="pink-theme"></label>
+        <label for="cute-theme"></label>
         <input
           type="radio"
-          id="pink-theme"
+          id="cute-theme"
           name="theme"
-          aria-label="pink-theme"
-          value="pink-theme"
+          aria-label="cute theme"
+          value="cute"
+          data-type="themes"
         />
       </div>
       <div
         id="calculationsDisplay"
         class="calculations-display display-positioning"
-      >
-        0
-      </div>
-      <div id="numbersDisplay" class="numbers-display display-positioning">
-        0
-      </div>
+      >0</div>
+      <div id="numbersDisplay" class="numbers-display display-positioning">0</div>
       <div class="buttons">
         <button aria-label="open parenthesis" disabled>(</button>
         <button aria-label="close parenthesis" disabled>)</button>

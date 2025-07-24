@@ -1,4 +1,4 @@
-import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import { clearCalculationsDisplay, clearNumbersDisplay, updateDisplay } from '../display/display.js';
 import {
   state,
   setLeftOperand,
@@ -38,16 +38,22 @@ export const pressUndo = e => {
   if (e.target.value == 'undo') {
     clearNumbersDisplay();
     let num = commandManager.undo();
+    if(num == null){
+      alert('nothing to undo');
+      num = 0;
+    }
+    
     updateDisplay(num, numbersDisplay);
     console.log('undo');
     console.log(commandManager.history);
 
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand cube: ' + state.leftOperand);
+      console.log('state.leftOperand : ' + state.leftOperand);
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand cube: ' + state.rightOperand);
+      console.log('state.rightOperand : ' + state.rightOperand);
     }
+    clearCalculationsDisplay();
   }
 };
