@@ -58,14 +58,14 @@ export const pressPower = e => {
   }
 
   if (e.target.value == 'powerOfX') {
-    if(state.operator){
-      state.saveHistory();
+    if(state.operator && state.leftOperand && state.rightOperand){
       setLeftOperand(makeCalculations());
-    } 
+      state.saveHistory();
+    }
     num = state.leftOperand;
-    console.log(num, state.leftOperand + " 10 power of x num");
+    console.log(num, state.leftOperand + " 10 power of x num  1");
     num = extractPowerOfX(num);
-    console.log(num, state.leftOperand + " 10 power of x num"); 
+    console.log(num, state.leftOperand + " 10 power of x num  2"); 
     
     clearCalculationsDisplay();
     updateDisplay(` 10 in power of ${num}`, calculationsDisplay);
@@ -74,6 +74,8 @@ export const pressPower = e => {
     updateDisplay(num, numbersDisplay);
 
     setLeftOperand(num);
+    console.log(state.leftOperand);
+    setRightOperand(0);
   }
 };
 

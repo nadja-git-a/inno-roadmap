@@ -65,7 +65,7 @@ export const defineOperand = e => {
 
   if (e.target.value == '-' && state.leftOperand == null) {
     value += '-';
-    state.leftOperand == value;
+    state.leftOperand = value;
   } else {
     if (e.target.classList.contains('number-button-color')) {
       if (state.operator == null) {
@@ -85,7 +85,7 @@ export const defineOperand = e => {
       e.target.classList.contains('operator-button-color') &&
       e.target.value !== '='
     ) {
-      if (state.rightOperand !== null) {
+      if (state.rightOperand) {
         state.saveHistory();
         setLeftOperand(makeCalculations());
         console.log('new left operand: ' + state.leftOperand);
@@ -95,5 +95,7 @@ export const defineOperand = e => {
       console.log('operator' + state.operator);
       clearNumbersDisplay();
     }
+
+    
   }
 };
