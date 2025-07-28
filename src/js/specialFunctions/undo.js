@@ -1,4 +1,6 @@
-import { clearCalculationsDisplay, clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import {     clearLeftOperandDisplay,
+  clearRightOperandDisplay,
+  clearOperatorDisplay, clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay  } from '../display/display.js';
 import {
   state,
   setLeftOperand,
@@ -44,16 +46,17 @@ export const pressUndo = e => {
     }
     
     updateDisplay(num, numbersDisplay);
-    console.log('undo');
-    console.log(commandManager.history);
+    updateLeftOperandDisplay();
 
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand : ' + state.leftOperand);
+      updateLeftOperandDisplay();
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand : ' + state.rightOperand);
+      updateRightOperandDisplay();
     }
-    clearCalculationsDisplay();
+    clearLeftOperandDisplay();
+    clearRightOperandDisplay();
+    clearOperatorDisplay();
   }
 };

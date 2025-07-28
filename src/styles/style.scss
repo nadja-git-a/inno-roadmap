@@ -37,6 +37,8 @@ body {
 }
 
 .calculations-display {
+  display: flex;
+  
   grid-area: calculations-display;
 
   color: var(--text-color-dimmed);
@@ -121,7 +123,7 @@ body {
   }
 
   .long-button {
-    flex-grow: 26;
+    flex-grow: 27;
   }
 }
 

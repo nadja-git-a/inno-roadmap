@@ -1,6 +1,6 @@
-import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay } from '../display/display.js';
 import { state, setRightOperand, setLeftOperand } from '../operators/operands.js';
-import { PercentageCommand } from '../operators/operators-commands.js';
+import { PercentageCommand } from '../operators/operatorsCommands.js';
 import { commandManager } from './undo.js';
 
 const countPercentage = () => {
@@ -11,11 +11,10 @@ const countPercentage = () => {
   state.saveHistory();
 
   if(!operator){
-    console.log('% left');
     let percent = new PercentageCommand(1, leftOperand);
     commandManager.remember(new PercentageCommand(1, leftOperand));
-    console.log(percent.execute());
     setLeftOperand(percent.execute());
+    updateLeftOperandDisplay();
     updateDisplay(percent.execute(), numbersDisplay);
     return percent.execute();
   }

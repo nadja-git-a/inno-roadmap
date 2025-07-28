@@ -1,11 +1,11 @@
-import { clearCalculationsDisplay, clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import { clearNumbersDisplay, clearOperatorDisplay, clearRightOperandDisplay, updateDisplay, updateLeftOperandDisplay, updateOperatorDisplay, updateRightOperandDisplay } from '../display/display.js';
 import {
   state,
   setLeftOperand,
   setRightOperand,
   setOperator,
 } from '../operators/operands.js';
-import { PowerCommand } from '../operators/operators-commands.js';
+import { PowerCommand } from '../operators/operatorsCommands.js';
 import { makeCalculations } from '../operators/operators.js';
 import { commandManager } from './undo.js';
 
@@ -15,67 +15,72 @@ export const pressPower = e => {
   let num = document.querySelector('#numbersDisplay').innerHTML;
 
   if (e.target.value == 'squared') {
-    updateDisplay(' power of 2', calculationsDisplay);
+    // updateDisplay(' power of 2', calculationsDisplay);
     num = extractSquare(num);
     clearNumbersDisplay();
     updateDisplay(num, numbersDisplay);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand square: ' + state.leftOperand);
+      updateLeftOperandDisplay();
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand square: ' + state.rightOperand);
+      updateRightOperandDisplay();
     }
 
-    console.log(num);
   }
 
   if (e.target.value == 'cubed') {
-    updateDisplay(' power of 3', calculationsDisplay);
+    // updateDisplay(' power of 3', calculationsDisplay);
     num = extractCube(num);
     clearNumbersDisplay();
     updateDisplay(num, numbersDisplay);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand cube: ' + state.leftOperand);
+      updateLeftOperandDisplay();
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand cube: ' + state.rightOperand);
+      updateRightOperandDisplay();
     }
   }
 
   if (e.target.value == 'powerOfY') {
     if(state.operator){
       setLeftOperand(makeCalculations());
+      updateLeftOperandDisplay();
+      clearRightOperandDisplay();
+      clearOperatorDisplay();
       state.saveHistory();
     } else {
       state.leftOperand = num;
     }
-    updateDisplay(' power of ', calculationsDisplay);
+    // updateDisplay(' power of ', calculationsDisplay);
     updateDisplay(num, numbersDisplay);
     setOperator('^');
+    updateOperatorDisplay();
     clearNumbersDisplay();
   }
 
   if (e.target.value == 'powerOfX') {
     if(state.operator && state.leftOperand && state.rightOperand){
       setLeftOperand(makeCalculations());
+      updateLeftOperandDisplay();
+      clearRightOperandDisplay();
+      clearOperatorDisplay();
       state.saveHistory();
     }
     num = state.leftOperand;
-    console.log(num, state.leftOperand + " 10 power of x num  1");
     num = extractPowerOfX(num);
-    console.log(num, state.leftOperand + " 10 power of x num  2"); 
     
-    clearCalculationsDisplay();
-    updateDisplay(` 10 in power of ${num}`, calculationsDisplay);
+    // clearCalculationsDisplay();
+    // updateDisplay(` 10 in power of ${num}`, calculationsDisplay);
    
     clearNumbersDisplay();
     updateDisplay(num, numbersDisplay);
 
     setLeftOperand(num);
-    console.log(state.leftOperand);
+    updateLeftOperandDisplay();
     setRightOperand(0);
+    updateRightOperandDisplay();
   }
 };
 

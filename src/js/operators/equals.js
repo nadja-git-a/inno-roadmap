@@ -1,4 +1,6 @@
-import { updateDisplay, clearCalculationsDisplay } from '../display/display.js';
+import { updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay,     clearLeftOperandDisplay,
+  clearRightOperandDisplay,
+  clearOperatorDisplay, updateOperatorDisplay } from '../display/display.js';
 import { state, setRightOperand, setOperator } from './operands.js';
 import { extractPowerOfY } from '../specialFunctions/power.js';
 import { makeCalculations } from './operators.js';
@@ -14,21 +16,25 @@ if (e.target.id == 'equals' && state.operator == '^') {
     extractYRoot(state.leftOperand);
     state.saveHistory();
   } else if (e.target.id == 'equals') {
-    clearCalculationsDisplay();
+    clearLeftOperandDisplay();
+    clearRightOperandDisplay();
+    clearOperatorDisplay();
     state.saveHistory();
     let value = makeCalculations();
     updateDisplay(value, numbersDisplay);
-    updateDisplay(value, calculationsDisplay);
+    clearLeftOperandDisplay();
+    updateLeftOperandDisplay();
+    updateRightOperandDisplay();
+    updateOperatorDisplay();
     setRightOperand(null);
-    console.log(state.rightOperand);
     setOperator(null);
   }
 
-  console.log(state);
-  clearCalculationsDisplay();
-  updateDisplay(state.leftOperand, calculationsDisplay)
+  clearRightOperandDisplay();
+  clearOperatorDisplay();
+  updateLeftOperandDisplay();
   } else {
     alert('enter numbers and operator')
-    console.log(state);
+     (state);
   } 
 };

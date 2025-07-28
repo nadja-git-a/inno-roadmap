@@ -1,4 +1,8 @@
-import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import {
+  clearRightOperandDisplay,
+  clearOperatorDisplay, updateLeftOperandDisplay,
+  updateRightOperandDisplay,
+  updateOperatorDisplay, clearNumbersDisplay, updateDisplay } from '../display/display.js';
 import { makeCalculations } from './operators.js';
 
 export class OperationState {
@@ -70,32 +74,32 @@ export const defineOperand = e => {
     if (e.target.classList.contains('number-button-color')) {
       if (state.operator == null) {
         setLeftOperand(value);
-        console.log('state.leftOperand:' + state.leftOperand);
+        updateLeftOperandDisplay();
+
       } else if (state.leftOperand && state.operator) {
         setRightOperand(value);
-        console.log('state.rightOperand: ' + state.rightOperand);
+        updateRightOperandDisplay();
+
         clearNumbersDisplay();
         updateDisplay(value, numbersDisplay);
       }
     }
-
-    //placement
-
     if (
       e.target.classList.contains('operator-button-color') &&
       e.target.value !== '='
     ) {
-      if (state.rightOperand) {
+        if (state.rightOperand) {
         state.saveHistory();
         setLeftOperand(makeCalculations());
-        console.log('new left operand: ' + state.leftOperand);
-        console.log(state);
+        updateLeftOperandDisplay();
+        clearRightOperandDisplay();
+        clearOperatorDisplay();
       }
       setOperator(e.target.value);
-      console.log('operator' + state.operator);
+      updateOperatorDisplay();
+
       clearNumbersDisplay();
     }
+    }
 
-    
-  }
 };

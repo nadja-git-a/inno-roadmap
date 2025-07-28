@@ -1,11 +1,11 @@
-import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay, updateOperatorDisplay, clearOperatorDisplay, clearRightOperandDisplay } from '../display/display.js';
 import {
   state,
   setLeftOperand,
   setRightOperand,
   setOperator,
 } from '../operators/operands.js';
-import { RootCommand } from '../operators/operators-commands.js';
+import { RootCommand } from '../operators/operatorsCommands.js';
 import { makeCalculations } from '../operators/operators.js';
 import { commandManager } from './undo.js';
 
@@ -21,10 +21,10 @@ export const pressRoots = e => {
     updateDisplay(num, numbersDisplay);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand square: ' + state.leftOperand);
+      updateLeftOperandDisplay();
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand square: ' + state.rightOperand);
+      updateRightOperandDisplay();
     }
   }
 
@@ -34,16 +34,19 @@ export const pressRoots = e => {
     updateDisplay(num, numbersDisplay);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
-      console.log('state.leftOperand cube: ' + state.leftOperand);
+      updateLeftOperandDisplay();
     } else {
       setRightOperand(num);
-      console.log('state.rightOperand cube: ' + state.rightOperand);
+      updateRightOperandDisplay();
     }
   }
 
   if (e.target.value == 'yRoot') {
     if(state.operator){
       setLeftOperand(makeCalculations());
+      updateLeftOperandDisplay();
+      clearRightOperandDisplay();
+      clearOperatorDisplay();
       state.saveHistory();
     } else {
       state.leftOperand = num;
@@ -51,8 +54,9 @@ export const pressRoots = e => {
    
     num = '';
     updateDisplay(num, numbersDisplay); 
-    updateDisplay(' √ in power of ', calculationsDisplay);
+    // updateDisplay(' √ in power of ', calculationsDisplay);
     setOperator('√');
+    updateOperatorDisplay();
     clearNumbersDisplay();
   }
 };

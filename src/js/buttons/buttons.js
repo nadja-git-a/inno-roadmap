@@ -13,7 +13,6 @@ import { pressThemes } from '../themes/themes.js';
 export class CalculatorButton {
   constructor(buttonElement, calculatorDisplay) {
     this.button = buttonElement;
-    // this.calculator = calculatorDisplay;
     this.button.addEventListener('click', this.onClick.bind(this));
   }
   onClick(e) {}

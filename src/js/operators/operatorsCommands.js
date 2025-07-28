@@ -102,7 +102,7 @@ export class PowerCommand extends Command {
     let result = 1;
     for (let i = 0; i < this.rightOperand; i++) {
       result *= this.leftOperand;
-      console.log('inside the loop' + this.leftOperand);
+
     }
     return result;
   }

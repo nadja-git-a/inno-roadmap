@@ -1,10 +1,10 @@
-import { clearNumbersDisplay, updateDisplay } from '../display/display.js';
+import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay } from '../display/display.js';
 import {
   state,
   setLeftOperand,
   setRightOperand,
 } from '../operators/operands.js';
-import { FactorialCommand } from '../operators/operators-commands.js';
+import { FactorialCommand } from '../operators/operatorsCommands.js';
 import { commandManager } from './undo.js';
 
 export const pressFactorial = e => {
@@ -20,14 +20,14 @@ export const pressFactorial = e => {
 
   clearNumbersDisplay();
   updateDisplay(result, numbersDisplay);
-  updateDisplay('!', calculationsDisplay)
+  // updateDisplay('!', calculationsDisplay)
 
   if (state.leftOperand == null || !state.rightOperand) {
     setLeftOperand(result);
-    console.log('state.leftOperand factorial: ' + state.leftOperand);
+    updateLeftOperandDisplay();
   } else {
     setRightOperand(result);
-    console.log('state.rightOperand factorial: ' + state.rightOperand);
+    updateRightOperandDisplay();
   }
   }
 };
