@@ -1,11 +1,10 @@
-import { setOperator, state } from '../operators/operands.js';
+import { state } from '../operators/operands.js';
 import { commandManager } from '../specialFunctions/undo.js';
 
-let numbersDisplay = document.querySelector('#numbersDisplay');
-let calculationsDisplay = document.querySelector('#calculationsDisplay');
-let leftOperandDisplay = document.querySelector('#leftOperand');
-let rightOperandDisplay = document.querySelector('#rightOperand');
-let operatorDisplay = document.querySelector('#operator');
+const numbersDisplay = document.querySelector('#numbersDisplay');
+const leftOperandDisplay = document.querySelector('#leftOperand');
+const rightOperandDisplay = document.querySelector('#rightOperand');
+const operatorDisplay = document.querySelector('#operator');
 
 export const clearNumbersDisplay = () => {
   numbersDisplay.innerHTML = '';
@@ -35,25 +34,29 @@ export const updateOperatorDisplay = () => {
   operatorDisplay.innerHTML = state.operator;
 };
 
+const MAX_DISPLAY_VALUE = 999999999999;
 
-export const updateDisplay = (value, targetDisplay) => {
-  if(targetDisplay.innerHTML > 999999999999999){
+export const updateDisplay = value => {
+  if (
+    numbersDisplay.innerHTML > MAX_DISPLAY_VALUE ||
+    value > MAX_DISPLAY_VALUE
+  ) {
     alert('number is too large');
     clearLeftOperandDisplay();
     clearRightOperandDisplay();
     clearOperatorDisplay();
     clearNumbersDisplay();
   } else {
-    if (targetDisplay.innerHTML == '0') {
-    if (value == '.') {
-      targetDisplay.innerHTML += value;
+    if (numbersDisplay.innerHTML == '0') {
+      if (value == '.') {
+        numbersDisplay.innerHTML += value;
+      } else {
+        numbersDisplay.innerHTML = '';
+        numbersDisplay.innerHTML += value;
+      }
     } else {
-      targetDisplay.innerHTML = '';
-      targetDisplay.innerHTML += value;
+      numbersDisplay.innerHTML += value;
     }
-  } else {
-    targetDisplay.innerHTML += value;
-  }
   }
 };
 
@@ -63,7 +66,7 @@ export const showcaseValueOnDisplay = e => {
   let value = e.target.value;
 
   if (!isNaN(value) || value == '.' || value == '-') {
-    updateDisplay(value, numbersDisplay);
+    updateDisplay(value);
   }
 
   if (value == 'AC') {
@@ -75,7 +78,7 @@ export const showcaseValueOnDisplay = e => {
     state.resetVariables();
     state.cleanHistory();
     commandManager.clearHistory();
-    updateDisplay(value, numbersDisplay);
+    updateDisplay(value);
     updateLeftOperandDisplay();
     updateRightOperandDisplay();
     updateOperatorDisplay();

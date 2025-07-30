@@ -1,6 +1,12 @@
-import {     clearLeftOperandDisplay,
+import {
+  clearLeftOperandDisplay,
   clearRightOperandDisplay,
-  clearOperatorDisplay, clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay  } from '../display/display.js';
+  clearOperatorDisplay,
+  clearNumbersDisplay,
+  updateDisplay,
+  updateLeftOperandDisplay,
+  updateRightOperandDisplay,
+} from '../display/display.js';
 import {
   state,
   setLeftOperand,
@@ -35,17 +41,16 @@ export const commandManager = new CommandManager();
 
 export const pressUndo = e => {
   e.preventDefault();
-  let numbersDisplay = document.querySelector('#numbersDisplay');
 
   if (e.target.value == 'undo') {
     clearNumbersDisplay();
     let num = commandManager.undo();
-    if(num == null){
+    if (num == null) {
       alert('nothing to undo');
       num = 0;
     }
-    
-    updateDisplay(num, numbersDisplay);
+
+    updateDisplay(num);
     updateLeftOperandDisplay();
 
     if (state.leftOperand == null || !state.rightOperand) {

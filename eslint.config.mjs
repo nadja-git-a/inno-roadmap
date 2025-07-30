@@ -15,11 +15,25 @@ export default defineConfig([
     },
     extends: [js.configs.recommended],
     ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js'],
+    files: ['**/*.{js,mjs,cjs}'],
     rules: {
-      files: ['**/*.{js,mjs,cjs}'],
       ...prettierPlugin.configs.recommended.rules,
       ...eslintConfigPrettier.rules,
       'no-unused-vars': 'off',
     },
   },
+  {
+    files: ['**/*.test.js'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+  },
+  {
+    files: ['webpack.config.cjs'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  }
 ]);

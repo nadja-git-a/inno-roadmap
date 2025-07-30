@@ -11,11 +11,11 @@ import { pressUndo } from '../specialFunctions/undo.js';
 import { pressThemes } from '../themes/themes.js';
 
 export class CalculatorButton {
-  constructor(buttonElement, calculatorDisplay) {
+  constructor(buttonElement) {
     this.button = buttonElement;
     this.button.addEventListener('click', this.onClick.bind(this));
   }
-  onClick(e) {}
+  onClick() {}
 }
 
 export class NumberButton extends CalculatorButton {
@@ -75,18 +75,17 @@ export class SpecialFunctionButton extends CalculatorButton {
 
 export class MemoryButton extends CalculatorButton {
   onClick(e) {
-    const value = this.button.value;
     pressMemory(e);
   }
 }
 
 export class ThemeButton {
-  constructor(radio){
+  constructor(radio) {
     this.radio = radio;
     this.radio.addEventListener('change', this.onClick.bind(this));
   }
 
-  onClick(e){
+  onClick(e) {
     pressThemes(e);
   }
 }

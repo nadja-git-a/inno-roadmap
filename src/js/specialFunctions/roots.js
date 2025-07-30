@@ -1,4 +1,12 @@
-import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay, updateOperatorDisplay, clearOperatorDisplay, clearRightOperandDisplay } from '../display/display.js';
+import {
+  clearNumbersDisplay,
+  updateDisplay,
+  updateLeftOperandDisplay,
+  updateRightOperandDisplay,
+  updateOperatorDisplay,
+  clearOperatorDisplay,
+  clearRightOperandDisplay,
+} from '../display/display.js';
 import {
   state,
   setLeftOperand,
@@ -8,17 +16,17 @@ import {
 import { RootCommand } from '../operators/operatorsCommands.js';
 import { makeCalculations } from '../operators/operators.js';
 import { commandManager } from './undo.js';
-
+import { captureNumber } from '../numbers/numbers.js';
 
 export const pressRoots = e => {
   e.preventDefault();
 
-  let num = document.querySelector('#numbersDisplay').innerHTML;
+  let num = captureNumber();
 
   if (e.target.value == 'squareRoot') {
     num = extractSquare(num);
     clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
+    updateDisplay(num);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
       updateLeftOperandDisplay();
@@ -31,7 +39,7 @@ export const pressRoots = e => {
   if (e.target.value == 'cubeRoot') {
     num = extractCube(num);
     clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
+    updateDisplay(num);
     if (state.leftOperand == null || !state.rightOperand) {
       setLeftOperand(num);
       updateLeftOperandDisplay();
@@ -42,7 +50,7 @@ export const pressRoots = e => {
   }
 
   if (e.target.value == 'yRoot') {
-    if(state.operator){
+    if (state.operator) {
       setLeftOperand(makeCalculations());
       updateLeftOperandDisplay();
       clearRightOperandDisplay();
@@ -51,10 +59,9 @@ export const pressRoots = e => {
     } else {
       state.leftOperand = num;
     }
-   
+
     num = '';
-    updateDisplay(num, numbersDisplay); 
-    // updateDisplay(' √ in power of ', calculationsDisplay);
+    updateDisplay(num);
     setOperator('√');
     updateOperatorDisplay();
     clearNumbersDisplay();
@@ -62,21 +69,24 @@ export const pressRoots = e => {
 };
 
 const extractSquare = num => {
-  let root = new RootCommand(num, 2).execute();
-  commandManager.remember(new RootCommand(num, 2));
+  const command = new RootCommand(num, 2);
+  let root = command.execute();
+  commandManager.remember(command);
   return root;
 };
 
 const extractCube = num => {
-  let root = new RootCommand(num, 3).execute();
-  commandManager.remember(new RootCommand(num, 3));
+  const command = new RootCommand(num, 3);
+  let root = command.execute();
+  commandManager.remember(command);
   return root;
 };
 
 export const extractYRoot = num => {
-  let root = new RootCommand(num, state.rightOperand).execute();
-  commandManager.remember(new RootCommand(num, state.rightOperand));
+  const command = new RootCommand(num, state.rightOperand);
+  let root = command.execute();
+  commandManager.remember(command);
   clearNumbersDisplay();
-  updateDisplay(root, numbersDisplay);
+  updateDisplay(root);
   return root;
 };

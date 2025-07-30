@@ -1,4 +1,13 @@
-import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay } from '../display/display.js';
+import {
+  clearNumbersDisplay,
+  updateDisplay,
+  clearLeftOperandDisplay,
+  clearRightOperandDisplay,
+  updateLeftOperandDisplay,
+  updateRightOperandDisplay,
+  clearOperatorDisplay,
+} from '../display/display.js';
+import { captureNumber } from '../numbers/numbers.js';
 import {
   state,
   setLeftOperand,
@@ -11,23 +20,29 @@ export const pressFactorial = e => {
   e.preventDefault();
 
   if (e.target.value == 'factorial') {
-  let num = document.querySelector('#numbersDisplay').innerHTML;
+    let num = captureNumber();
+    const MAX_FACTORIAL = 999999999999;
 
-  const command = new FactorialCommand(num);
-  let result = command.execute();
+    const command = new FactorialCommand(num);
+    let result = command.execute();
 
-  commandManager.remember(command); 
+    commandManager.remember(command);
 
-  clearNumbersDisplay();
-  updateDisplay(result, numbersDisplay);
-  // updateDisplay('!', calculationsDisplay)
-
-  if (state.leftOperand == null || !state.rightOperand) {
-    setLeftOperand(result);
-    updateLeftOperandDisplay();
-  } else {
-    setRightOperand(result);
-    updateRightOperandDisplay();
-  }
+    clearNumbersDisplay();
+    updateDisplay(result);
+    if (result > MAX_FACTORIAL) {
+      clearNumbersDisplay();
+      clearRightOperandDisplay();
+      clearLeftOperandDisplay();
+      clearOperatorDisplay();
+    } else {
+      if (state.leftOperand == null || !state.rightOperand) {
+        setLeftOperand(result);
+        updateLeftOperandDisplay();
+      } else {
+        setRightOperand(result);
+        updateRightOperandDisplay();
+      }
+    }
   }
 };

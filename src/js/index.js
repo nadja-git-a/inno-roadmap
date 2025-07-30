@@ -8,7 +8,6 @@ import {
 } from './buttons/buttons.js';
 
 document.addEventListener('DOMContentLoaded', e => {
-  const display = document.querySelector('#numbersDisplay');
   const buttons = document.querySelectorAll('[data-type]');
 
   buttons.forEach(btn => {
@@ -16,16 +15,16 @@ document.addEventListener('DOMContentLoaded', e => {
 
     switch (type) {
       case 'number':
-        new NumberButton(btn, display);
+        new NumberButton(btn);
         break;
       case 'operator':
-        new OperatorButton(btn, display);
+        new OperatorButton(btn);
         break;
       case 'special':
-        new SpecialFunctionButton(btn, display);
+        new SpecialFunctionButton(btn);
         break;
       case 'memory':
-        new MemoryButton(btn, display);
+        new MemoryButton(btn);
         break;
       case 'themes':
         new ThemeButton(btn);

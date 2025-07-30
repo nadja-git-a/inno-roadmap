@@ -1,5 +1,3 @@
-import { clearCalculationsDisplay, clearNumbersDisplay } from "../display/display.js";
-
 export class Command {
   execute() {
     throw new Error('');
@@ -102,7 +100,6 @@ export class PowerCommand extends Command {
     let result = 1;
     for (let i = 0; i < this.rightOperand; i++) {
       result *= this.leftOperand;
-
     }
     return result;
   }
@@ -113,7 +110,6 @@ export class PowerCommand extends Command {
     } else {
       return this.leftOperand;
     }
-    
   }
 }
 

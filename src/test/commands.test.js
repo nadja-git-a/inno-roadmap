@@ -7,7 +7,7 @@ import {
   PowerCommand,
   RootCommand,
   FactorialCommand,
-} from '../js/operators/operators-commands.js';
+} from '../js/operators/operatorsCommands.js';
 
 describe('AddCommand test', () => {
   test('add two numbers', () => {

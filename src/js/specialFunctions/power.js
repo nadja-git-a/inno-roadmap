@@ -1,4 +1,13 @@
-import { clearNumbersDisplay, clearOperatorDisplay, clearRightOperandDisplay, updateDisplay, updateLeftOperandDisplay, updateOperatorDisplay, updateRightOperandDisplay } from '../display/display.js';
+import {
+  clearLeftOperandDisplay,
+  clearNumbersDisplay,
+  clearOperatorDisplay,
+  clearRightOperandDisplay,
+  updateDisplay,
+  updateLeftOperandDisplay,
+  updateOperatorDisplay,
+  updateRightOperandDisplay,
+} from '../display/display.js';
 import {
   state,
   setLeftOperand,
@@ -8,43 +17,58 @@ import {
 import { PowerCommand } from '../operators/operatorsCommands.js';
 import { makeCalculations } from '../operators/operators.js';
 import { commandManager } from './undo.js';
+import { captureNumber } from '../numbers/numbers.js';
 
 export const pressPower = e => {
   e.preventDefault();
-
-  let num = document.querySelector('#numbersDisplay').innerHTML;
+  let num = captureNumber();
+  const MAX_POWER_OF_X = 17;
+  const MAX_POWER_OF_Y = 999999999999;
 
   if (e.target.value == 'squared') {
-    // updateDisplay(' power of 2', calculationsDisplay);
     num = extractSquare(num);
-    clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
-    if (state.leftOperand == null || !state.rightOperand) {
-      setLeftOperand(num);
-      updateLeftOperandDisplay();
+    if (num >= MAX_POWER_OF_Y) {
+      alert('number is too large power');
+      clearNumbersDisplay();
+      clearRightOperandDisplay();
+      clearLeftOperandDisplay();
+      clearOperatorDisplay();
     } else {
-      setRightOperand(num);
-      updateRightOperandDisplay();
+      clearNumbersDisplay();
+      updateDisplay(num);
+      if (state.leftOperand == null || !state.rightOperand) {
+        setLeftOperand(num);
+        updateLeftOperandDisplay();
+      } else {
+        setRightOperand(num);
+        updateRightOperandDisplay();
+      }
     }
-
   }
 
   if (e.target.value == 'cubed') {
-    // updateDisplay(' power of 3', calculationsDisplay);
     num = extractCube(num);
-    clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
-    if (state.leftOperand == null || !state.rightOperand) {
-      setLeftOperand(num);
-      updateLeftOperandDisplay();
+    if (num >= MAX_POWER_OF_Y) {
+      alert('number is too large power');
+      clearNumbersDisplay();
+      clearRightOperandDisplay();
+      clearLeftOperandDisplay();
+      clearOperatorDisplay();
     } else {
-      setRightOperand(num);
-      updateRightOperandDisplay();
+      clearNumbersDisplay();
+      updateDisplay(num);
+      if (state.leftOperand == null || !state.rightOperand) {
+        setLeftOperand(num);
+        updateLeftOperandDisplay();
+      } else {
+        setRightOperand(num);
+        updateRightOperandDisplay();
+      }
     }
   }
 
   if (e.target.value == 'powerOfY') {
-    if(state.operator){
+    if (state.operator) {
       setLeftOperand(makeCalculations());
       updateLeftOperandDisplay();
       clearRightOperandDisplay();
@@ -53,15 +77,14 @@ export const pressPower = e => {
     } else {
       state.leftOperand = num;
     }
-    // updateDisplay(' power of ', calculationsDisplay);
-    updateDisplay(num, numbersDisplay);
+    updateDisplay(num);
     setOperator('^');
     updateOperatorDisplay();
     clearNumbersDisplay();
   }
 
   if (e.target.value == 'powerOfX') {
-    if(state.operator && state.leftOperand && state.rightOperand){
+    if (state.operator && state.leftOperand && state.rightOperand) {
       setLeftOperand(makeCalculations());
       updateLeftOperandDisplay();
       clearRightOperandDisplay();
@@ -69,51 +92,52 @@ export const pressPower = e => {
       state.saveHistory();
     }
     num = state.leftOperand;
-    num = extractPowerOfX(num);
-    
-    // clearCalculationsDisplay();
-    // updateDisplay(` 10 in power of ${num}`, calculationsDisplay);
-   
-    clearNumbersDisplay();
-    updateDisplay(num, numbersDisplay);
 
-    setLeftOperand(num);
-    updateLeftOperandDisplay();
-    setRightOperand(0);
-    updateRightOperandDisplay();
+    if (num >= MAX_POWER_OF_X) {
+      alert('number is too large power');
+      clearNumbersDisplay();
+      clearRightOperandDisplay();
+      clearLeftOperandDisplay();
+      clearOperatorDisplay();
+    } else {
+      num = extractPowerOfX(num);
+      clearNumbersDisplay();
+      updateDisplay(num);
+
+      setLeftOperand(num);
+      updateLeftOperandDisplay();
+    }
   }
 };
 
 const extractSquare = num => {
-  let power = new PowerCommand(num, 2).execute();
-  commandManager.remember(new PowerCommand(num, 2));
+  const command = new PowerCommand(num, 2);
+  let power = command.execute();
+  commandManager.remember(command);
   return power;
 };
 
 const extractCube = num => {
-  let power = new PowerCommand(num, 3).execute();
-  commandManager.remember(new PowerCommand(num, 3));
+  const command = new PowerCommand(num, 3);
+  let power = command.execute();
+  commandManager.remember(command);
   return power;
 };
 
 export const extractPowerOfY = num => {
-  let power = new PowerCommand(num, state.rightOperand).execute();
-  commandManager.remember(new PowerCommand(num, state.rightOperand));
+  const command = new PowerCommand(num, state.rightOperand);
+  let power = command.execute();
+  commandManager.remember(command);
   clearNumbersDisplay();
-  updateDisplay(power, numbersDisplay);
+  updateDisplay(power);
   return power;
 };
 
 export const extractPowerOfX = num => {
-  if (num > 308) {
-    alert('number is too large');
-    return Infinity;
-  } else {
-    let power = new PowerCommand(10, num).execute();
-    commandManager.remember(new PowerCommand(10, num, 'powerOfX'));
-    clearNumbersDisplay();
-    updateDisplay(power, numbersDisplay);
-    return power;
-  }
-
+  const command = new PowerCommand(10, num, 'powerOfX');
+  let power = command.execute();
+  commandManager.remember(command);
+  clearNumbersDisplay();
+  updateDisplay(power);
+  return power;
 };

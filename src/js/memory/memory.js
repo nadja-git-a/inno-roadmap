@@ -1,5 +1,13 @@
-import { clearNumbersDisplay, updateDisplay, updateLeftOperandDisplay, updateRightOperandDisplay } from '../display/display.js';
-import { state, setRightOperand, setLeftOperand } from '../operators/operands.js';
+import {
+  clearNumbersDisplay,
+  updateLeftOperandDisplay,
+  updateRightOperandDisplay,
+} from '../display/display.js';
+import {
+  state,
+  setRightOperand,
+  setLeftOperand,
+} from '../operators/operands.js';
 
 let numbersDisplay = document.querySelector('#numbersDisplay');
 
@@ -49,7 +57,6 @@ export const pressMemory = e => {
   }
   if (e.target.value == 'm-') {
     memoryCard.memorySubtract();
-    
   }
   if (e.target.value == 'm+') {
     memoryCard.memoryAdd();

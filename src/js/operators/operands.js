@@ -1,8 +1,13 @@
 import {
   clearRightOperandDisplay,
-  clearOperatorDisplay, updateLeftOperandDisplay,
+  clearOperatorDisplay,
+  updateLeftOperandDisplay,
   updateRightOperandDisplay,
-  updateOperatorDisplay, clearNumbersDisplay, updateDisplay } from '../display/display.js';
+  updateOperatorDisplay,
+  clearNumbersDisplay,
+  updateDisplay,
+} from '../display/display.js';
+import { captureNumber } from '../numbers/numbers.js';
 import { makeCalculations } from './operators.js';
 
 export class OperationState {
@@ -65,7 +70,7 @@ export let setOperator = state.setOperator.bind(state);
 export const defineOperand = e => {
   e.preventDefault();
 
-  let value = document.querySelector('#numbersDisplay').innerHTML;
+  let value = captureNumber();
 
   if (e.target.value == '-' && state.leftOperand == null) {
     value += '-';
@@ -75,20 +80,19 @@ export const defineOperand = e => {
       if (state.operator == null) {
         setLeftOperand(value);
         updateLeftOperandDisplay();
-
       } else if (state.leftOperand && state.operator) {
         setRightOperand(value);
         updateRightOperandDisplay();
 
         clearNumbersDisplay();
-        updateDisplay(value, numbersDisplay);
+        updateDisplay(value);
       }
     }
     if (
       e.target.classList.contains('operator-button-color') &&
       e.target.value !== '='
     ) {
-        if (state.rightOperand) {
+      if (state.rightOperand) {
         state.saveHistory();
         setLeftOperand(makeCalculations());
         updateLeftOperandDisplay();
@@ -100,6 +104,5 @@ export const defineOperand = e => {
 
       clearNumbersDisplay();
     }
-    }
-
+  }
 };
