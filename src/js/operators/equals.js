@@ -7,7 +7,7 @@ import { makeCalculations } from './operators.js';
 import { extractYRoot } from '../specialFunctions/roots.js';
 
 export const pressEquals = e => {
-  e.preventDefault;
+  e.preventDefault();
   if(state.leftOperand !== null && state.rightOperand !== null && state.operator!== null ){
 if (e.target.id == 'equals' && state.operator == '^') {
     extractPowerOfY(state.leftOperand);
