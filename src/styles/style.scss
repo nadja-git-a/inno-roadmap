@@ -25,7 +25,7 @@ body {
 
   background-color: var(--dark-color);
   border-radius: variables.$border-radius;
-  box-shadow: 0px 7px 20px rgb(41, 41, 41);
+  box-shadow: 0px 7px 20px variables.$shadow-color;
 }
 
 .themes {
@@ -94,8 +94,8 @@ body {
     }
 
     &:focus-visible {
-      outline: 2px solid black;
-      border: solid rgb(255, 255, 255);
+      outline: 2px solid variables.$black-color;
+      border: solid variables.$white-color;
     }
 
     &:disabled {
@@ -133,13 +133,13 @@ input[type='radio'] {
   height: 15px;
   margin: 0;
   border-radius: 50%;
-  border: 2px solid #999;
-  background-color: #fff;
+  border: 2px solid variables.$grey-color;
+  background-color: variables.$white-color;
   cursor: pointer;
   position: relative;
 
   &:checked {
-    border: 2px solid white;
+    border: 2px solid variables.$white-color;
   }
 }
 
