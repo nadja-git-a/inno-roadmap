@@ -1,11 +1,11 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
       globals: globals.browser,
     },
@@ -13,9 +13,13 @@ export default defineConfig([
       js,
       prettier: prettierPlugin,
     },
-    extends: ['js/recommended', 'plugin:prettier/recommended'],
+    extends: [js.configs.recommended],
+    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js'],
     rules: {
-      'prettier/prettier': 'error',
+      files: ['**/*.{js,mjs,cjs}'],
+      ...prettierPlugin.configs.recommended.rules,
+      ...eslintConfigPrettier.rules,
+      'no-unused-vars': 'off',
     },
   },
 ]);

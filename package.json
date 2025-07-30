@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  
   "scripts": {
     "build": "webpack",
     "start": "webpack serve",
     "format": "prettier --write \"**/*.{js,json,css,md,ts,html}\"",
     "lint:fix": "eslint . --fix",
     "test": "jest",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -44,11 +44,12 @@
   },
   "dependencies": {
     "css-loader": "^7.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0"
   },
-
   "lint-staged": {
     "**/*.{js,jsx}": [
       "npm run lint:fix",
